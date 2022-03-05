@@ -1,5 +1,7 @@
 <script lang="ts">
-	type Technology = { key: string; label: string; active: boolean };
+	import type { Technology } from 'src/types/Quiz.type';
+
+	import QuizSection from '$lib/QuizSection.svelte';
 
 	let technologies: Technology[] = [
 		{ key: 'csharp', label: 'C#', active: false },
@@ -7,6 +9,8 @@
 		{ key: 'angular', label: 'Angular', active: false },
 		{ key: 'typescript', label: 'TypeScript', active: false },
 	];
+
+	$: activeTechnologies = technologies.filter(({ active }) => active);
 
 	function toggleActive(key: string) {
 		technologies = technologies.map((tech) => (tech.key === key ? { ...tech, active: !tech.active } : tech));
@@ -19,9 +23,15 @@
 	{/each}
 </div>
 
+<div class="flex flex-col space-y-4">
+	{#each activeTechnologies as section (section.key)}
+		<QuizSection {section} />
+	{/each}
+</div>
+
 <style>
 	.btn {
-		@apply font-medium rounded-full text-sm px-4 py-1.5 text-center mr-2 mb-2;
+		@apply font-medium rounded-full text-sm px-4 py-1.5 text-center mr-2 mb-4;
 	}
 
 	.btn:not(.active) {

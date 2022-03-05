@@ -1,5 +1,5 @@
 <script lang="ts">
-	import TechSelector from '$lib/TechSelector.svelte';
+	import Quiz from '$lib/Quiz.svelte';
 </script>
 
-<TechSelector />
+<Quiz />
