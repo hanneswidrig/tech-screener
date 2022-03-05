@@ -6,9 +6,6 @@
 	<nav class="max-w-5xl mx-auto">
 		<ul class="flex gap-8 p-4">
 			<li class:active={$page.url.pathname === '/'}><a sveltekit:prefetch href="/">Dashboard</a></li>
-			<li class:active={$page.url.pathname === '/candidates'}>
-				<a sveltekit:prefetch href="/candidates">Candidates</a>
-			</li>
 		</ul>
 	</nav>
 </header>
