@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Quiz from '$lib/Quiz.svelte';
+	import ContentSelector from '$lib/ContentSelector.svelte';
 </script>
 
-<Quiz />
+<ContentSelector />
