@@ -1,30 +1,29 @@
 <script lang="ts">
-	import type { Question, AnswerKey } from 'src/types/Question.type';
+	import type { QuizQuestion, AnswerKey } from 'src/types/Question.type';
 
-	export let q: Question = {
-		question: 'What is an Object?',
-		answer: 'An instance of a class.',
-		selected: '',
-	};
+	export let question: QuizQuestion;
 
 	function onAnswerSelected(selected: AnswerKey): void {
-		if (q.selected === selected) {
-			q.selected = '';
+		if (question.selected === selected) {
+			question.selected = '';
 		} else {
-			q.selected = selected;
+			question.selected = selected;
 		}
 	}
 </script>
 
-<div class="w-full flex justify-between items-center">
-	<h2>{q.question}</h2>
-	<div class="inline-flex space-x-1">
-		<button class="box" class:selected={q.selected === 'A'} on:click={() => onAnswerSelected('A')}>A</button>
-		<button class="box" class:selected={q.selected === 'B'} on:click={() => onAnswerSelected('B')}>B</button>
-		<button class="box" class:selected={q.selected === 'C'} on:click={() => onAnswerSelected('C')}>C</button>
-		<button class="box" class:selected={q.selected === 'D'} on:click={() => onAnswerSelected('D')}>D</button>
-		<button class="box" class:selected={q.selected === 'F'} on:click={() => onAnswerSelected('F')}>F</button>
+<div class="w-full flex flex-col">
+	<div class="w-full flex justify-between items-center mb-3">
+		<h2 class="font-medium">{question.question}</h2>
+		<div class="inline-flex space-x-1">
+			<button class="box" class:selected={question.selected === 'A'} on:click={() => onAnswerSelected('A')}>A</button>
+			<button class="box" class:selected={question.selected === 'B'} on:click={() => onAnswerSelected('B')}>B</button>
+			<button class="box" class:selected={question.selected === 'C'} on:click={() => onAnswerSelected('C')}>C</button>
+			<button class="box" class:selected={question.selected === 'D'} on:click={() => onAnswerSelected('D')}>D</button>
+			<button class="box" class:selected={question.selected === 'F'} on:click={() => onAnswerSelected('F')}>F</button>
+		</div>
 	</div>
+	<div class="w-full italic">{question.answer}</div>
 </div>
 
 <style>

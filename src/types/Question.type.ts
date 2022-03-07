@@ -1,2 +1,2 @@
 export type AnswerKey = 'A' | 'B' | 'C' | 'D' | 'F' | '';
-export type Question = { question: string; answer: string; selected: AnswerKey };
+export type QuizQuestion = { question: string; answer: string; selected: AnswerKey };
