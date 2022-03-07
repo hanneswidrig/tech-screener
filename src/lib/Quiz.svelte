@@ -31,7 +31,7 @@
 
 <style>
 	.btn {
-		@apply font-medium rounded-full text-sm px-4 py-1.5 text-center mr-2 mb-4;
+		@apply rounded-sm text-sm px-4 py-1.5 text-center mr-2 mb-4;
 	}
 
 	.btn:not(.active) {

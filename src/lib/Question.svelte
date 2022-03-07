@@ -14,8 +14,8 @@
 
 <div class="w-full flex flex-col">
 	<div class="w-full flex justify-between items-center mb-3">
-		<h2 class="font-medium">{question.question}</h2>
-		<div class="inline-flex space-x-1">
+		<h2 class="font-bold text-xl">{question.question}</h2>
+		<div class="inline-flex ml-4 space-x-1">
 			<button class="box" class:selected={question.selected === 'A'} on:click={() => onAnswerSelected('A')}>A</button>
 			<button class="box" class:selected={question.selected === 'B'} on:click={() => onAnswerSelected('B')}>B</button>
 			<button class="box" class:selected={question.selected === 'C'} on:click={() => onAnswerSelected('C')}>C</button>
@@ -23,7 +23,7 @@
 			<button class="box" class:selected={question.selected === 'F'} on:click={() => onAnswerSelected('F')}>F</button>
 		</div>
 	</div>
-	<div class="w-full italic">{question.answer}</div>
+	<div class="w-full">{question.answer}</div>
 </div>
 
 <style>

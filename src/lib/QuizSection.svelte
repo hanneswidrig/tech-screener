@@ -18,7 +18,7 @@
 
 <section class="card" class:expanded>
 	<div class="card-header" class:expanded on:click={() => (expanded = !expanded)}>
-		<h1 class="font-medium text-2xl">{section.label}</h1>
+		<h1 class="text-2xl">{section.label}</h1>
 		<MdiChevronDown class="text-2xl" transform="rotate({expanded ? 180 : 0})" />
 	</div>
 	<div class="flex flex-col p-4 space-y-12" class:hidden={!expanded}>
