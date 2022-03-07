@@ -28,7 +28,7 @@
 
 <style>
 	.box {
-		@apply px-3.5 py-2 shadow-sm hover:shadow-md border border-blue-300 hover:border-blue-600;
+		@apply px-3.5 py-2 shadow-sm hover:shadow-md border;
 	}
 
 	.box:first-of-type {
@@ -40,10 +40,10 @@
 	}
 
 	.box:not(.selected) {
-		@apply text-black bg-white;
+		@apply text-black bg-white border-blue-300 hover:border-blue-600;
 	}
 
 	.box.selected {
-		@apply text-white bg-blue-700 hover:bg-blue-800 border border-blue-900;
+		@apply text-white bg-blue-700 hover:bg-blue-800 border-blue-900;
 	}
 </style>

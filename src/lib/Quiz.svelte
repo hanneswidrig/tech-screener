@@ -31,14 +31,14 @@
 
 <style>
 	.btn {
-		@apply rounded-sm text-sm px-4 py-1.5 text-center mr-2 mb-4;
+		@apply px-4 py-1.5 mr-2 mb-4 shadow-sm hover:shadow-md border rounded-md text-center;
 	}
 
 	.btn:not(.active) {
-		@apply text-black bg-white hover:bg-gray-100 border border-gray-200;
+		@apply text-black bg-white border-zinc-300 hover:border-zinc-600;
 	}
 
 	.btn.active {
-		@apply text-white bg-gray-700 hover:bg-gray-800 border border-gray-900;
+		@apply text-white bg-zinc-700 hover:bg-zinc-800 border-zinc-900;
 	}
 </style>
