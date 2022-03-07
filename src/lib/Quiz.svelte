@@ -35,10 +35,10 @@
 	}
 
 	.btn:not(.active) {
-		@apply text-black bg-white hover:bg-red-100 border border-red-200;
+		@apply text-black bg-white hover:bg-gray-100 border border-gray-200;
 	}
 
 	.btn.active {
-		@apply text-white bg-red-700 hover:bg-red-800 border border-red-900;
+		@apply text-white bg-gray-700 hover:bg-gray-800 border border-gray-900;
 	}
 </style>
