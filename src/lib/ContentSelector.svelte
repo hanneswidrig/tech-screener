@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { TechnologyGroup } from 'src/types/Quiz.type';
+	import Button from '$lib/Button.svelte';
 	import { goto } from '$app/navigation';
 
 	let groups: TechnologyGroup[] = [
@@ -54,48 +55,14 @@
 		<div>
 			<h1 class="text-3xl text-zinc-600 mb-4">{group.title}</h1>
 			{#each group.items as item (item.key)}
-				<button
-					type="button"
-					class="btn btn-zinc"
-					class:selected={item.selected}
-					on:click={() => toggleActive(group.key, item.key)}>{item.label}</button>
+				<Button selected={item.selected} theme="zinc" on:click={() => toggleActive(group.key, item.key)}>
+					{item.label}
+				</Button>
 			{/each}
 		</div>
 	{/each}
 </div>
 
 <div class="flex justify-center mt-8">
-	<button
-		type="button"
-		class="btn btn-green flex justify-center"
-		class:disabled
-		on:click={() => !disabled && navigateToQuiz()}>
-		Start Quiz
-	</button>
+	<Button {disabled} theme="green" on:click={() => !disabled && navigateToQuiz()}>Start Quiz</Button>
 </div>
-
-<style>
-	.btn {
-		@apply px-4 py-1.5 mr-2 mb-4 shadow-sm hover:shadow-md border rounded-md text-center;
-	}
-
-	.btn.disabled {
-		@apply hover:shadow-sm cursor-default;
-	}
-
-	.btn.btn-zinc:not(.selected) {
-		@apply text-black bg-white border-zinc-300 hover:border-zinc-600;
-	}
-
-	.btn.btn-zinc.selected {
-		@apply text-white bg-zinc-700 hover:bg-zinc-800 border-zinc-900;
-	}
-
-	.btn.btn-green:not(.disabled) {
-		@apply text-white bg-green-700 hover:bg-green-800 active:bg-green-900 border-green-900;
-	}
-
-	.btn.btn-green.disabled {
-		@apply text-gray-400 bg-gray-50  border-gray-300;
-	}
-</style>
