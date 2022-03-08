@@ -5,7 +5,7 @@
 </script>
 
 <script lang="ts">
-	export let key: string = '';
+	export let key = '';
 </script>
 
 <span>{key}</span>
