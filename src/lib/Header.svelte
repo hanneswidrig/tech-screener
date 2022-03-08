@@ -1,21 +1,12 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import { goto } from '$app/navigation';
+
+	import Button from '$lib/Button.svelte';
 </script>
 
-<header class="sticky top-0 shadow-md bg-white">
-	<nav class="max-w-5xl mx-auto">
-		<ul class="flex gap-8 p-4">
-			<li class:active={$page.url.pathname === '/'}><a sveltekit:prefetch href="/">Dashboard</a></li>
-		</ul>
+<header class="sticky top-0">
+	<nav class="max-w-5xl mx-auto my-4">
+		<Button theme="zinc" selected={$page.url.pathname === '/'} on:click={() => goto('/')}>Dashboard</Button>
 	</nav>
 </header>
-
-<style>
-	li:hover {
-		@apply underline;
-	}
-
-	li.active {
-		@apply font-bold;
-	}
-</style>
