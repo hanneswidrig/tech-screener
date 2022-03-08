@@ -1,26 +1,9 @@
 <script lang="ts">
-	import type { TechnologyGroup } from 'src/types/Quiz.type';
-	import Button from '$lib/Button.svelte';
 	import { goto } from '$app/navigation';
+	import Button from '$lib/Button.svelte';
+	import { technologyGroups } from '$lib/data/technology-group';
 
-	let groups: TechnologyGroup[] = [
-		{
-			key: 'programmingLanguages',
-			title: 'Programming Languages',
-			items: [
-				{ key: 'csharp', label: 'C#', selected: false },
-				{ key: 'typescript', label: 'TypeScript', selected: false },
-			],
-		},
-		{
-			key: 'jsFrameworks',
-			title: 'Front End Frameworks',
-			items: [
-				{ key: 'react', label: 'React', selected: false },
-				{ key: 'angular', label: 'Angular', selected: false },
-			],
-		},
-	];
+	let groups = technologyGroups();
 
 	$: disabled = groups.every(({ items }) => items.every(({ selected }) => !selected));
 	$: selected = groups.flatMap(({ items }) => items.filter(({ selected }) => selected).map(({ key }) => key));
@@ -55,7 +38,7 @@
 		<div>
 			<h1 class="text-3xl text-zinc-600 mb-4">{group.title}</h1>
 			{#each group.items as item (item.key)}
-				<Button selected={item.selected} theme="zinc" on:click={() => toggleActive(group.key, item.key)}>
+				<Button active={item.selected} theme="zinc" on:click={() => toggleActive(group.key, item.key)}>
 					{item.label}
 				</Button>
 			{/each}

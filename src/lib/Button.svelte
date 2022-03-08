@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let selected = false;
+	export let active = false;
 	export let disabled = false;
 	export let theme: 'zinc' | 'green' = 'zinc';
 </script>
@@ -9,7 +9,7 @@
 	class="btn"
 	class:btn-zinc={theme === 'zinc'}
 	class:btn-green={theme === 'green'}
-	class:selected
+	class:active
 	class:disabled
 	on:click>
 	<slot />
@@ -24,11 +24,11 @@
 		@apply hover:shadow-sm cursor-default;
 	}
 
-	.btn.btn-zinc:not(.selected) {
+	.btn.btn-zinc:not(.active) {
 		@apply text-black bg-white border-zinc-300 hover:border-zinc-600;
 	}
 
-	.btn.btn-zinc.selected {
+	.btn.btn-zinc.active {
 		@apply text-white bg-zinc-700 hover:bg-zinc-800 border-zinc-900;
 	}
 

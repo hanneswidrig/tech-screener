@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { Technology } from 'src/types/Quiz.type';
-	import type { QuizQuestion } from 'src/types/Question.type';
+	import type { Technology } from '$lib/types/Quiz.type';
+	import type { QuizQuestion } from '$lib/types/Question.type';
 
 	import MdiChevronDown from 'virtual:icons/mdi/chevron-down';
 
