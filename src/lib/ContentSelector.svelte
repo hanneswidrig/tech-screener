@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { TechnologyGroup } from 'src/types/Quiz.type';
+	import { goto } from '$app/navigation';
 
 	let groups: TechnologyGroup[] = [
 		{
@@ -20,6 +21,9 @@
 		},
 	];
 
+	$: disabled = groups.every(({ items }) => items.every(({ selected }) => !selected));
+	$: selected = groups.flatMap(({ items }) => items.filter(({ selected }) => selected).map(({ key }) => key));
+
 	function toggleActive(groupKey: string, itemKey: string): void {
 		groups = groups.map((group) => {
 			if (group.key === groupKey) {
@@ -31,6 +35,17 @@
 
 			return group;
 		});
+	}
+
+	function navigateToQuiz(): Promise<void> {
+		const queryParams = new URLSearchParams();
+
+		queryParams.set('category', selected.shift() as string);
+		for (const key of selected) {
+			queryParams.append('category', key);
+		}
+
+		return goto(`quiz?${queryParams.toString()}`);
 	}
 </script>
 
@@ -50,12 +65,22 @@
 </div>
 
 <div class="flex justify-center mt-8">
-	<button type="button" class="btn btn-green flex justify-center">Start Quiz</button>
+	<button
+		type="button"
+		class="btn btn-green flex justify-center"
+		class:disabled
+		on:click={() => !disabled && navigateToQuiz()}>
+		Start Quiz
+	</button>
 </div>
 
 <style>
 	.btn {
 		@apply px-4 py-1.5 mr-2 mb-4 shadow-sm hover:shadow-md border rounded-md text-center;
+	}
+
+	.btn.disabled {
+		@apply hover:shadow-sm cursor-default;
 	}
 
 	.btn.btn-zinc:not(.selected) {
@@ -66,7 +91,11 @@
 		@apply text-white bg-zinc-700 hover:bg-zinc-800 border-zinc-900;
 	}
 
-	.btn.btn-green {
+	.btn.btn-green:not(.disabled) {
 		@apply text-white bg-green-700 hover:bg-green-800 active:bg-green-900 border-green-900;
+	}
+
+	.btn.btn-green.disabled {
+		@apply text-gray-400 bg-gray-50  border-gray-300;
 	}
 </style>
