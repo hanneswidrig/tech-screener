@@ -8,7 +8,9 @@
 	<title>Tech Screening App</title>
 </svelte:head>
 
-<Header />
+<header class="max-w-5xl mx-auto my-4">
+	<Header />
+</header>
 
 <main class="max-w-5xl mx-auto my-4">
 	<slot />
