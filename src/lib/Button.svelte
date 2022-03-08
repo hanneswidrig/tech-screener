@@ -17,7 +17,7 @@
 
 <style>
 	.btn {
-		@apply px-4 py-1.5 mr-2 mb-4 shadow-sm hover:shadow-md border rounded-md text-center;
+		@apply px-4 py-1.5 shadow-sm hover:shadow-md border rounded-md text-center;
 	}
 
 	.btn.disabled {

@@ -33,23 +33,25 @@
 	}
 </script>
 
-<div class="flex flex-wrap justify-center">
-	{#each selectedCategories as itemKey}
-		<Button theme="zinc" active={selectedCategory === itemKey} on:click={() => updateActiveCategory(itemKey)}>
-			{getCategoryLabel(itemKey)}
-		</Button>
-	{/each}
-</div>
+<div class="flex flex-col overflow-auto">
+	<div class="flex flex-wrap justify-center mb-4 gap-2">
+		{#each selectedCategories as itemKey}
+			<Button theme="zinc" active={selectedCategory === itemKey} on:click={() => updateActiveCategory(itemKey)}>
+				{getCategoryLabel(itemKey)}
+			</Button>
+		{/each}
+	</div>
 
-{#if selectedQuestionBank.length > 0}
-	<section class="card">
-		<div class="flex flex-col p-4 space-y-12">
-			{#each selectedQuestionBank as question}
-				<Question {question} />
-			{/each}
-		</div>
-	</section>
-{/if}
+	{#if selectedQuestionBank.length > 0}
+		<section class="card">
+			<div class="flex flex-col p-4 space-y-12">
+				{#each selectedQuestionBank as question}
+					<Question {question} />
+				{/each}
+			</div>
+		</section>
+	{/if}
+</div>
 
 <style>
 	.card {

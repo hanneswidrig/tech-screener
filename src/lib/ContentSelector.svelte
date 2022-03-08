@@ -33,19 +33,23 @@
 	}
 </script>
 
-<div class="flex flex-col space-y-8">
-	{#each groups as group (group.key)}
-		<div>
-			<h1 class="text-3xl text-zinc-600 mb-4">{group.title}</h1>
-			{#each group.items as item (item.key)}
-				<Button active={item.selected} theme="zinc" on:click={() => toggleActive(group.key, item.key)}>
-					{item.label}
-				</Button>
-			{/each}
-		</div>
-	{/each}
-</div>
+<div class="flex flex-col m-4">
+	<div class="flex flex-col space-y-8">
+		{#each groups as group (group.key)}
+			<div>
+				<h1 class="text-3xl text-zinc-600 mb-4">{group.title}</h1>
+				<div class="flex flex-wrap gap-2">
+					{#each group.items as item (item.key)}
+						<Button active={item.selected} theme="zinc" on:click={() => toggleActive(group.key, item.key)}>
+							{item.label}
+						</Button>
+					{/each}
+				</div>
+			</div>
+		{/each}
+	</div>
 
-<div class="flex justify-center mt-8">
-	<Button {disabled} theme="green" on:click={() => !disabled && navigateToQuiz()}>Start Quiz</Button>
+	<div class="flex justify-center mt-8">
+		<Button {disabled} theme="green" on:click={() => !disabled && navigateToQuiz()}>Start Quiz</Button>
+	</div>
 </div>
