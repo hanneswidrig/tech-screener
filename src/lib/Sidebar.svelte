@@ -3,11 +3,13 @@
 	import { goto } from '$app/navigation';
 
 	import Button from '$lib/Button.svelte';
+	import { quiz } from '$lib/store/quiz';
 	import { scoreSheet, scoreSheetPercentGrade } from '$lib/store/scoreSheet';
 
 	$: console.log($scoreSheet);
 
 	async function goToDashboard(): Promise<void> {
+		quiz.clear();
 		scoreSheet.clear();
 
 		if ($page.url.pathname !== '/') {

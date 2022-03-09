@@ -35,6 +35,18 @@ function createScoreSheet() {
 				};
 			});
 		},
+		update: (prevAnswerKey: AnswerKey, nextAnswerKey: AnswerKey) => {
+			update((prev) => {
+				const nextScore = prev.score - deriveScoreFromAnswer(prevAnswerKey) + deriveScoreFromAnswer(nextAnswerKey);
+				const nextAnswerCount = prev.answerCount;
+
+				return {
+					score: nextScore,
+					maxScore: nextAnswerCount * deriveScoreFromAnswer('A'),
+					answerCount: nextAnswerCount,
+				};
+			});
+		},
 		remove: (answerKey: AnswerKey) => {
 			update((prev) => {
 				const nextScore = prev.score - deriveScoreFromAnswer(answerKey);

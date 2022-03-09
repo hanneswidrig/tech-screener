@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { QuizQuestion, AnswerKey } from '$lib/Question.type';
+	import { quiz } from '$lib/store/quiz';
 	import { scoreSheet } from '$lib/store/scoreSheet';
 
 	export let state: QuizQuestion;
@@ -10,17 +11,19 @@
 		const select = state.selected === '' && state.selected !== selected;
 
 		if (deselect) {
+			quiz.remove({ topicId: 'csharp', questionId: state.id, grade: selected });
 			scoreSheet.remove(selected);
 			state.selected = '';
 		}
 
 		if (changeSelect) {
-			scoreSheet.remove(state.selected);
-			scoreSheet.add(selected);
+			quiz.update({ topicId: 'csharp', questionId: state.id, grade: selected });
+			scoreSheet.update(state.selected, selected);
 			state.selected = selected;
 		}
 
 		if (select) {
+			quiz.add({ topicId: 'csharp', questionId: state.id, grade: selected });
 			scoreSheet.add(selected);
 			state.selected = selected;
 		}
@@ -29,7 +32,7 @@
 
 <div class="w-full flex flex-col">
 	<div class="w-full flex justify-between items-center mb-3">
-		<h2 class="font-bold text-xl">{state.question}</h2>
+		<h2 class="font-bold text-xl">{state.question} - {state.id}</h2>
 		<div class="inline-flex ml-4 space-x-1">
 			<button class="box" class:selected={state.selected === 'A'} on:click={() => onAnswerSelected('A')}>A</button>
 			<button class="box" class:selected={state.selected === 'B'} on:click={() => onAnswerSelected('B')}>B</button>
