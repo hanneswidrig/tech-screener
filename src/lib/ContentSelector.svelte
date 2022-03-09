@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import Button from '$lib/Button.svelte';
-	import { technologyGroups } from '$lib/data/technology-group';
+	import { topicGroups } from '$lib/data/topic-group';
 
-	let groups = technologyGroups();
+	let groups = topicGroups();
 
 	$: disabled = groups.every(({ items }) => items.every(({ selected }) => !selected));
 	$: selected = groups.flatMap(({ items }) => items.filter(({ selected }) => selected).map(({ key }) => key));
@@ -24,9 +24,9 @@
 	function navigateToQuiz(): Promise<void> {
 		const queryParams = new URLSearchParams();
 
-		queryParams.set('category', selected.shift() as string);
+		queryParams.set('topic', selected.shift() as string);
 		for (const key of selected) {
-			queryParams.append('category', key);
+			queryParams.append('topic', key);
 		}
 
 		return goto(`quiz?${queryParams.toString()}`);

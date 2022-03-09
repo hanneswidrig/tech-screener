@@ -1,7 +1,7 @@
-export type Technology = { key: string; label: string; selected: boolean };
-export type TechnologyGroup = { key: string; title: string; items: Technology[] };
+export type Topic = { key: string; label: string; selected: boolean };
+export type TopicGroup = { key: string; title: string; items: Topic[] };
 
-export const technologyGroups: () => TechnologyGroup[] = () => [
+export const topicGroups: () => TopicGroup[] = () => [
 	{
 		key: 'programmingLanguages',
 		title: 'Programming Languages',

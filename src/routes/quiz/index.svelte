@@ -6,11 +6,11 @@
 	import Question from '$lib/Question.svelte';
 	import { replaceStateWithQuery } from '$lib/utils';
 	import { questionBank } from '$lib/data/question-bank';
-	import { technologyGroups } from '$lib/data/technology-group';
+	import { topicGroups } from '$lib/data/topic-group';
 	import type { QuizQuestion } from '$lib/Question.type';
 
-	const selectedCategories = $page.url.searchParams.getAll('category');
-	const technologies = technologyGroups().flatMap(({ items }) => items);
+	const selectedTopics = $page.url.searchParams.getAll('topic');
+	const topics = topicGroups().flatMap(({ items }) => items);
 
 	let selectedCategory: string;
 
@@ -20,24 +20,24 @@
 			: [];
 
 	onMount(() => {
-		updateActiveCategory($page.url.searchParams.get('selected') ?? selectedCategories[0]);
+		updateActiveTopic($page.url.searchParams.get('selected') ?? selectedTopics[0]);
 	});
 
-	function updateActiveCategory(itemKey: string): void {
+	function updateActiveTopic(itemKey: string): void {
 		selectedCategory = itemKey;
 		replaceStateWithQuery({ selected: itemKey });
 	}
 
-	function getCategoryLabel(itemKey: string): string {
-		return technologies.find(({ key }) => key === itemKey)?.label ?? '';
+	function getTopicLabel(itemKey: string): string {
+		return topics.find(({ key }) => key === itemKey)?.label ?? '';
 	}
 </script>
 
 <div class="flex flex-col overflow-auto">
 	<div class="flex flex-wrap justify-center mb-4 gap-2">
-		{#each selectedCategories as itemKey}
-			<Button theme="zinc" active={selectedCategory === itemKey} on:click={() => updateActiveCategory(itemKey)}>
-				{getCategoryLabel(itemKey)}
+		{#each selectedTopics as itemKey}
+			<Button theme="zinc" active={selectedCategory === itemKey} on:click={() => updateActiveTopic(itemKey)}>
+				{getTopicLabel(itemKey)}
 			</Button>
 		{/each}
 	</div>
