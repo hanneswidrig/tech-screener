@@ -1,4 +1,5 @@
-import type { TechnologyGroup } from '$lib/types/Quiz.type';
+export type Technology = { key: string; label: string; selected: boolean };
+export type TechnologyGroup = { key: string; title: string; items: Technology[] };
 
 export const technologyGroups: () => TechnologyGroup[] = () => [
 	{

@@ -7,7 +7,7 @@
 	import { replaceStateWithQuery } from '$lib/utils';
 	import { questionBank } from '$lib/data/question-bank';
 	import { technologyGroups } from '$lib/data/technology-group';
-	import type { QuizQuestion } from '$lib/types/Question.type';
+	import type { QuizQuestion } from '$lib/Question.type';
 
 	const selectedCategories = $page.url.searchParams.getAll('category');
 	const technologies = technologyGroups().flatMap(({ items }) => items);

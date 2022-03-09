@@ -1,6 +1,6 @@
 import { writable, derived } from 'svelte/store';
 
-import type { AnswerKey } from '$lib/types/Question.type';
+import type { AnswerKey } from '$lib/Question.type';
 
 function deriveScoreFromAnswer(answerKey: AnswerKey): number {
 	switch (answerKey) {

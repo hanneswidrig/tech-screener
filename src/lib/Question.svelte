@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { QuizQuestion, AnswerKey } from '$lib/types/Question.type';
+	import type { QuizQuestion, AnswerKey } from '$lib/Question.type';
 	import { scoreSheet } from '$lib/store/scoreSheet';
 
 	export let state: QuizQuestion;
