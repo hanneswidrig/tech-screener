@@ -1,29 +1,44 @@
 <script lang="ts">
 	import type { QuizQuestion, AnswerKey } from '$lib/types/Question.type';
+	import { scoreSheet } from '$lib/store/scoreSheet';
 
-	export let question: QuizQuestion;
+	export let state: QuizQuestion;
 
 	function onAnswerSelected(selected: AnswerKey): void {
-		if (question.selected === selected) {
-			question.selected = '';
-		} else {
-			question.selected = selected;
+		const deselect = state.selected === selected;
+		const changeSelect = state.selected !== '' && state.selected !== selected;
+		const select = state.selected === '' && state.selected !== selected;
+
+		if (deselect) {
+			scoreSheet.remove(selected);
+			state.selected = '';
+		}
+
+		if (changeSelect) {
+			scoreSheet.remove(state.selected);
+			scoreSheet.add(selected);
+			state.selected = selected;
+		}
+
+		if (select) {
+			scoreSheet.add(selected);
+			state.selected = selected;
 		}
 	}
 </script>
 
 <div class="w-full flex flex-col">
 	<div class="w-full flex justify-between items-center mb-3">
-		<h2 class="font-bold text-xl">{question.question}</h2>
+		<h2 class="font-bold text-xl">{state.question}</h2>
 		<div class="inline-flex ml-4 space-x-1">
-			<button class="box" class:selected={question.selected === 'A'} on:click={() => onAnswerSelected('A')}>A</button>
-			<button class="box" class:selected={question.selected === 'B'} on:click={() => onAnswerSelected('B')}>B</button>
-			<button class="box" class:selected={question.selected === 'C'} on:click={() => onAnswerSelected('C')}>C</button>
-			<button class="box" class:selected={question.selected === 'D'} on:click={() => onAnswerSelected('D')}>D</button>
-			<button class="box" class:selected={question.selected === 'F'} on:click={() => onAnswerSelected('F')}>F</button>
+			<button class="box" class:selected={state.selected === 'A'} on:click={() => onAnswerSelected('A')}>A</button>
+			<button class="box" class:selected={state.selected === 'B'} on:click={() => onAnswerSelected('B')}>B</button>
+			<button class="box" class:selected={state.selected === 'C'} on:click={() => onAnswerSelected('C')}>C</button>
+			<button class="box" class:selected={state.selected === 'D'} on:click={() => onAnswerSelected('D')}>D</button>
+			<button class="box" class:selected={state.selected === 'F'} on:click={() => onAnswerSelected('F')}>F</button>
 		</div>
 	</div>
-	<div class="w-full">{question.answer}</div>
+	<div class="w-full">{state.answer}</div>
 </div>
 
 <style>

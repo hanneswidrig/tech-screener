@@ -46,7 +46,7 @@
 		<section class="card">
 			<div class="flex flex-col p-4 space-y-12">
 				{#each selectedQuestionBank as question}
-					<Question {question} />
+					<Question state={question} />
 				{/each}
 			</div>
 		</section>
