@@ -33,14 +33,6 @@ export const topicGroups: () => TopicGroup[] = () => [
 		],
 	},
 	{
-		key: 'databases',
-		title: 'Databases',
-		items: [
-			{ key: 'sql', label: 'SQL', selected: false },
-			{ key: 'nosql', label: 'NoSQL', selected: false },
-		],
-	},
-	{
 		key: 'cloudSolutions',
 		title: 'Cloud Solutions',
 		items: [

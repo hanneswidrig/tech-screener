@@ -8,12 +8,12 @@
 	$: disabled = groups.every(({ items }) => items.every(({ selected }) => !selected));
 	$: selected = groups.flatMap(({ items }) => items.filter(({ selected }) => selected).map(({ key }) => key));
 
-	function toggleActive(groupKey: string, itemKey: string): void {
+	function toggleActive(groupKey: string, topicKey: string): void {
 		groups = groups.map((group) => {
 			if (group.key === groupKey) {
 				return {
 					...group,
-					items: group.items.map((tech) => (tech.key === itemKey ? { ...tech, selected: !tech.selected } : tech)),
+					items: group.items.map((tech) => (tech.key === topicKey ? { ...tech, selected: !tech.selected } : tech)),
 				};
 			}
 
