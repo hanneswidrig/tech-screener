@@ -1,11 +1,35 @@
-import { writable } from 'svelte/store';
+import { writable, derived } from 'svelte/store';
 
-import type { AnswerKey } from '$lib/Question.type';
+import { replaceStateWithQuery } from '$lib/utils';
+import { questionBank } from '$lib/data/question-bank';
+import type { AnswerKey, QuizQuestion } from '$lib/Question.type';
 
 type QuestionResult = { topicId: string; questionId: string; grade: AnswerKey };
 
 export const activeTopics = writable<string[]>([]);
-export const activeTopic = writable('');
+
+function createActiveTopic() {
+	const { subscribe, set } = writable('');
+	return {
+		subscribe,
+		update: (topic: string) => {
+			set(topic);
+			replaceStateWithQuery({ selected: topic });
+		},
+	};
+}
+
+export const activeTopic = createActiveTopic();
+
+export const activeTopicQuestions = derived(activeTopic, ($activeTopic) => {
+	if ($activeTopic === 'csharp') {
+		return questionBank().csharp.map(
+			({ question, answer }, i): QuizQuestion => ({ id: `${i}`, question, answer, selected: '' })
+		);
+	}
+
+	return [];
+});
 
 function createQuiz() {
 	const { subscribe, set, update } = writable<QuestionResult[]>([]);
