@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import { writable, derived } from 'svelte/store';
+import { writable } from 'svelte/store';
 
 import { replaceStateWithQuery } from '$lib/utils';
 import type { AnswerKey } from '$lib/Question.type';
@@ -48,16 +48,11 @@ function createQuiz() {
 
 export const quiz = createQuiz();
 
-const csharpQuestionBank: QuizQuestion[] = questionBank().csharp.map(({ question, answer }) => ({
-	id: uuidv4(),
-	question,
-	answer,
-}));
-
-export const questions = derived(activeTopic, ($activeTopic) => {
-	if ($activeTopic === 'csharp') {
-		return csharpQuestionBank;
-	}
-
-	return [];
-});
+export const questions = writable<QuizQuestion[]>(
+	questionBank().csharp.map(({ question, answer }) => ({
+		id: uuidv4(),
+		question,
+		answer,
+		expanded: false,
+	}))
+);

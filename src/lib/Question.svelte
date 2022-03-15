@@ -5,7 +5,7 @@
 	import type { QuizQuestion, AnswerKey } from '$lib/Question.type';
 
 	export let question: QuizQuestion;
-	let expanded = false;
+	export let expanded = false;
 
 	$: selected = $quiz.find(({ questionId }) => questionId === question.id)?.grade ?? '';
 
