@@ -1,8 +1,11 @@
 <script lang="ts">
+	import MdiChevronDown from 'virtual:icons/mdi/chevron-down';
+
 	import { activeTopic, quiz } from '$lib/store/quiz';
 	import type { QuizQuestion, AnswerKey } from '$lib/Question.type';
 
 	export let question: QuizQuestion;
+	let expanded = false;
 
 	$: selected = $quiz.find(({ questionId }) => questionId === question.id)?.grade ?? '';
 
@@ -28,25 +31,38 @@
 	}
 </script>
 
-<div class="card">
-	<div class="w-full flex flex-col">
-		<div class="w-full flex justify-between items-center mb-3">
-			<h2 class="font-bold text-xl">{question.question}</h2>
-			<div class="inline-flex ml-4 space-x-1">
-				<button class="option" class:selected={selected === 'A'} on:click={() => onAnswerSelected('A')}>A</button>
-				<button class="option" class:selected={selected === 'B'} on:click={() => onAnswerSelected('B')}>B</button>
-				<button class="option" class:selected={selected === 'C'} on:click={() => onAnswerSelected('C')}>C</button>
-				<button class="option" class:selected={selected === 'D'} on:click={() => onAnswerSelected('D')}>D</button>
-				<button class="option" class:selected={selected === 'F'} on:click={() => onAnswerSelected('F')}>F</button>
-			</div>
+<div class="card" on:click={() => (expanded = !expanded)}>
+	<div class="w-full p-4 flex justify-between items-center">
+		<div class="flex items-center">
+			<MdiChevronDown class="text-lg mr-4" transform="rotate({expanded ? 180 : 0})" />
+			<h2 class="font-bold text-lg">{question.question}</h2>
 		</div>
-		<div class="w-full">{question.answer}</div>
+		<div class="inline-flex ml-4 space-x-1">
+			<button class="option" class:selected={selected === 'A'} on:click|stopPropagation={() => onAnswerSelected('A')}>
+				A
+			</button>
+			<button class="option" class:selected={selected === 'B'} on:click|stopPropagation={() => onAnswerSelected('B')}>
+				B
+			</button>
+			<button class="option" class:selected={selected === 'C'} on:click|stopPropagation={() => onAnswerSelected('C')}>
+				C
+			</button>
+			<button class="option" class:selected={selected === 'D'} on:click|stopPropagation={() => onAnswerSelected('D')}>
+				D
+			</button>
+			<button class="option" class:selected={selected === 'F'} on:click|stopPropagation={() => onAnswerSelected('F')}>
+				F
+			</button>
+		</div>
 	</div>
+	{#if expanded}
+		<div class="w-full p-4">{question.answer}</div>
+	{/if}
 </div>
 
 <style>
 	.card {
-		@apply flex flex-col p-4 bg-white shadow-sm rounded-md border border-gray-300;
+		@apply flex flex-col bg-white shadow-sm hover:shadow-md rounded-md border border-zinc-300 hover:border-zinc-600 cursor-pointer;
 	}
 
 	.option {
