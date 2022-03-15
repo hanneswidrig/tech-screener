@@ -29,7 +29,7 @@
 	}
 
 	.btn.btn-zinc.active {
-		@apply text-white bg-zinc-700 hover:bg-zinc-800 border-zinc-900;
+		@apply text-white bg-zinc-700 hover:bg-zinc-800 active:bg-zinc-900 border-zinc-900;
 	}
 
 	.btn.btn-green:not(.disabled) {
