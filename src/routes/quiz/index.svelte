@@ -2,8 +2,11 @@
 	import { onMount } from 'svelte';
 
 	import { page } from '$app/stores';
+	import Button from '$lib/Button.svelte';
 	import Question from '$lib/Question.svelte';
-	import { activeTopics, activeTopic, activeTopicQuestions } from '$lib/store/quiz';
+	import { activeTopics, activeTopic, quiz, questions } from '$lib/store/quiz';
+
+	$: console.log($quiz);
 
 	onMount(() => {
 		const selectedTopics = $page.url.searchParams.getAll('topic');
@@ -12,20 +15,12 @@
 	});
 </script>
 
-<div class="flex flex-col overflow-auto">
-	{#if $activeTopicQuestions.length > 0}
-		<section class="card">
-			<div class="flex flex-col p-4 space-y-12">
-				{#each $activeTopicQuestions as question (question.id)}
-					<Question {question} />
-				{/each}
-			</div>
-		</section>
-	{/if}
+<div class="flex justify-end mb-4">
+	<Button theme="zinc" on:click={() => quiz.resetTopic($activeTopic)}>Reset</Button>
 </div>
 
-<style>
-	.card {
-		@apply flex flex-col bg-white shadow-sm rounded-md border border-gray-300;
-	}
-</style>
+<div class="flex flex-col gap-4">
+	{#each $questions as question (question.id)}
+		<Question {question} />
+	{/each}
+</div>
