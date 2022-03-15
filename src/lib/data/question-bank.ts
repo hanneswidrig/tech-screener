@@ -1,4 +1,5 @@
-export const questionBank = () => ({
+export type QuestionBank = { question: string; answer: string };
+export const questionBank = (): { csharp: QuestionBank[] } => ({
 	csharp: [
 		{
 			question: 'What is an Object?',

@@ -1,10 +1,10 @@
 import { v4 as uuidv4 } from 'uuid';
-import { writable } from 'svelte/store';
+import { writable, derived } from 'svelte/store';
 
 import { replaceStateWithQuery } from '$lib/utils';
 import type { AnswerKey } from '$lib/Question.type';
-import { questionBank } from '$lib/data/question-bank';
 import type { QuizQuestion } from '$lib/Question.type';
+import { questionBank, type QuestionBank } from '$lib/data/question-bank';
 
 export const activeTopics = writable<string[]>([]);
 
@@ -48,11 +48,41 @@ function createQuiz() {
 
 export const quiz = createQuiz();
 
-export const questions = writable<QuizQuestion[]>(
-	questionBank().csharp.map(({ question, answer }) => ({
-		id: uuidv4(),
-		question,
-		answer,
-		expanded: false,
-	}))
-);
+function mapToQuizQuestions(questions: QuestionBank[], topicId: string): QuizQuestion[] {
+	return questions.map(({ question, answer }) => ({ topicId, id: uuidv4(), question, answer, expanded: false }));
+}
+
+function createQuestions() {
+	const { subscribe, set, update } = writable<QuizQuestion[]>([]);
+
+	const { csharp } = questionBank();
+	set(mapToQuizQuestions(csharp, 'csharp'));
+
+	return {
+		subscribe,
+		expandAll: (activeTopic: string) => {
+			update((questions) =>
+				questions.map((question) => {
+					return activeTopic === question.topicId ? { ...question, expanded: true } : question;
+				})
+			);
+		},
+		collapseAll: (activeTopic: string) => {
+			update((questions) =>
+				questions.map((question) => {
+					return activeTopic === question.topicId ? { ...question, expanded: false } : question;
+				})
+			);
+		},
+	};
+}
+
+export const questions = createQuestions();
+
+export const readOnlyQuestions = derived([questions, activeTopic], ([$questions, $activeTopic]) => {
+	if ($activeTopic === 'csharp') {
+		return $questions.filter(({ topicId }) => topicId === $activeTopic);
+	}
+
+	return [];
+});

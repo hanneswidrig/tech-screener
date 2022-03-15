@@ -1,7 +1,7 @@
 <script lang="ts">
 	import MdiChevronDown from 'virtual:icons/mdi/chevron-down';
 
-	import { activeTopic, quiz } from '$lib/store/quiz';
+	import { quiz } from '$lib/store/quiz';
 	import type { QuizQuestion, AnswerKey } from '$lib/Question.type';
 
 	export let question: QuizQuestion;
@@ -10,7 +10,7 @@
 	$: selected = $quiz.find(({ questionId }) => questionId === question.id)?.grade ?? '';
 
 	function onAnswerSelected(answer: AnswerKey): void {
-		const topicId = $activeTopic;
+		const topicId = question.topicId;
 		const questionId = question.id;
 
 		const deselect = selected === answer;
