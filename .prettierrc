@@ -3,5 +3,7 @@
 	"singleQuote": true,
 	"trailingComma": "es5",
 	"printWidth": 120,
-	"bracketSameLine": true
+	"bracketSameLine": true,
+	"svelteBracketNewLine": true,
+	"singleAttributePerLine": true
 }
