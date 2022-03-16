@@ -4,6 +4,5 @@
 	"trailingComma": "es5",
 	"printWidth": 120,
 	"bracketSameLine": true,
-	"svelteBracketNewLine": true,
 	"singleAttributePerLine": true
 }
