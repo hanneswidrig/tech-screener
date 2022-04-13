@@ -15,7 +15,7 @@
 	<slot />
 </button>
 
-<style>
+<style lang="postcss">
 	.btn {
 		@apply px-4 py-1.5 shadow-sm hover:shadow-md border rounded-md text-center;
 	}

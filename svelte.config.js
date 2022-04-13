@@ -4,7 +4,7 @@ import Icons from 'unplugin-icons/vite';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-	preprocess: preprocess({ postcss: true }),
+	preprocess: [preprocess({ postcss: true })],
 	kit: {
 		adapter: adapter(),
 		vite: {

@@ -16,7 +16,7 @@
 	<slot />
 </main>
 
-<style>
+<style lang="postcss">
 	aside {
 		@apply flex flex-col w-64 p-4 h-screen bg-white;
 	}

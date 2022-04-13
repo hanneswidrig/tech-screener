@@ -60,7 +60,7 @@
 	{/if}
 </div>
 
-<style>
+<style lang="postcss">
 	.card {
 		@apply flex flex-col bg-white shadow-sm hover:shadow-md rounded-md border border-zinc-300 hover:border-zinc-600 cursor-pointer;
 	}
