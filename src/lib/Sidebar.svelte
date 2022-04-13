@@ -2,9 +2,9 @@
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
 
+	import { quiz } from '$lib/store/quiz';
 	import Button from '$lib/Button.svelte';
 	import Topics from '$lib/Topics.svelte';
-	import { quiz } from '$lib/store/quiz';
 
 	async function goToDashboard(): Promise<void> {
 		quiz.clear();

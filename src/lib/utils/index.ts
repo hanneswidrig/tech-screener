@@ -1,3 +1,5 @@
+import type { AnswerKey } from '$lib/store/quiz';
+
 /**
  * Replace url query params without page reloads or navigations
  *
@@ -16,3 +18,22 @@ export const replaceStateWithQuery = (values: Record<string, string>): void => {
 
 	history.replaceState({}, '', url);
 };
+
+/**
+ * Calculate quiz question score given a specified grade
+ */
+export function deriveScoreFromAnswer(answerKey: AnswerKey): number {
+	switch (answerKey) {
+		case 'A':
+			return 10;
+		case 'B':
+			return 8;
+		case 'C':
+			return 7;
+		case 'D':
+			return 6;
+		case 'F':
+		default:
+			return 0;
+	}
+}

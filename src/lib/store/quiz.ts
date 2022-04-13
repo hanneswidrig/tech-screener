@@ -1,88 +1,29 @@
-import { v4 as uuidv4 } from 'uuid';
-import { writable, derived } from 'svelte/store';
+import { writable } from 'svelte/store';
 
-import { replaceStateWithQuery } from '$lib/utils';
-import type { AnswerKey } from '$lib/Question.type';
-import type { QuizQuestion } from '$lib/Question.type';
-import { questionBank, type QuestionBank } from '$lib/data/question-bank';
-
-export const activeTopics = writable<string[]>([]);
-
-function createActiveTopic() {
-	const { subscribe, set } = writable('');
-	return {
-		subscribe,
-		update: (topic: string) => {
-			set(topic);
-			replaceStateWithQuery({ selected: topic });
-		},
-	};
-}
-
-export const activeTopic = createActiveTopic();
-
-type QuestionResult = { topicId: string; questionId: string; grade: AnswerKey };
+export type AnswerKey = 'A' | 'B' | 'C' | 'D' | 'F' | '';
+export type QuizAnswer = { topicId: string; questionId: string; grade: AnswerKey };
 
 function createQuiz() {
-	const { subscribe, set, update } = writable<QuestionResult[]>([]);
+	const { subscribe, set, update } = writable<QuizAnswer[]>([]);
 
 	return {
 		subscribe,
-		add: (result: QuestionResult) => update((prev) => [...prev, result]),
-		update: (result: QuestionResult) => {
-			update((prev) =>
-				prev.map((v) =>
-					v.questionId === result.questionId ? { topicId: v.topicId, questionId: v.questionId, grade: result.grade } : v
+		add: (answer: QuizAnswer) => update((prevAnswers) => [...prevAnswers, answer]),
+		update: (answer: QuizAnswer) => {
+			update((prevAnswers) =>
+				prevAnswers.map((v) =>
+					v.questionId === answer.questionId ? { topicId: v.topicId, questionId: v.questionId, grade: answer.grade } : v
 				)
 			);
 		},
-		remove: (result: QuestionResult) => {
-			update((prev) => prev.filter((v) => v.questionId !== result.questionId));
+		remove: (answer: QuizAnswer) => {
+			update((prevAnswers) => prevAnswers.filter((prevAnswer) => prevAnswer.questionId !== answer.questionId));
 		},
-		resetTopic: (topic: string) => {
-			update((prev) => prev.filter((v) => v.topicId !== topic));
+		resetTopic: (topicId: string) => {
+			update((prevAnswers) => prevAnswers.filter((prevAnswer) => prevAnswer.topicId !== topicId));
 		},
 		clear: () => set([]),
 	};
 }
 
 export const quiz = createQuiz();
-
-function mapToQuizQuestions(questions: QuestionBank[], topicId: string): QuizQuestion[] {
-	return questions.map(({ question, answer }) => ({ topicId, id: uuidv4(), question, answer, expanded: false }));
-}
-
-function createQuestions() {
-	const { subscribe, set, update } = writable<QuizQuestion[]>([]);
-
-	const { csharp } = questionBank();
-	set(mapToQuizQuestions(csharp, 'csharp'));
-
-	return {
-		subscribe,
-		expandAll: (activeTopic: string) => {
-			update((questions) =>
-				questions.map((question) => {
-					return activeTopic === question.topicId ? { ...question, expanded: true } : question;
-				})
-			);
-		},
-		collapseAll: (activeTopic: string) => {
-			update((questions) =>
-				questions.map((question) => {
-					return activeTopic === question.topicId ? { ...question, expanded: false } : question;
-				})
-			);
-		},
-	};
-}
-
-export const questions = createQuestions();
-
-export const readOnlyQuestions = derived([questions, activeTopic], ([$questions, $activeTopic]) => {
-	if ($activeTopic === 'csharp') {
-		return $questions.filter(({ topicId }) => topicId === $activeTopic);
-	}
-
-	return [];
-});

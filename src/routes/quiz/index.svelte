@@ -2,9 +2,11 @@
 	import { onMount } from 'svelte';
 
 	import { page } from '$app/stores';
+	import { quiz } from '$lib/store/quiz';
 	import Button from '$lib/Button.svelte';
 	import Question from '$lib/Question.svelte';
-	import { activeTopics, activeTopic, quiz, questions, readOnlyQuestions } from '$lib/store/quiz';
+	import { questions, readOnlyQuestions } from '$lib/store/questions';
+	import { activeTopic, activeTopics } from '$lib/store/active-topic';
 
 	onMount(() => {
 		const selectedTopics = $page.url.searchParams.getAll('topic');

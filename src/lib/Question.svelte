@@ -1,8 +1,8 @@
 <script lang="ts">
 	import MdiChevronDown from 'virtual:icons/mdi/chevron-down';
 
-	import { quiz } from '$lib/store/quiz';
-	import type { QuizQuestion, AnswerKey } from '$lib/Question.type';
+	import { quiz, type AnswerKey } from '$lib/store/quiz';
+	import type { QuizQuestion } from '$lib/store/questions';
 
 	export let question: QuizQuestion;
 	export let expanded = false;
