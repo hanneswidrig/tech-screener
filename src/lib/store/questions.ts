@@ -13,26 +13,20 @@ function mapToQuizQuestions(questions: QuestionBank[], topicId: string): QuizQue
 function createQuestions() {
 	const { subscribe, update } = writable<QuizQuestion[]>([]);
 
-	const { javascript, typescript, java, csharp } = questionBank();
-	update((questions) => questions.concat(mapToQuizQuestions(javascript as QuestionBank[], 'javascript')));
-	update((questions) => questions.concat(mapToQuizQuestions(typescript as QuestionBank[], 'typescript')));
-	update((questions) => questions.concat(mapToQuizQuestions(java as QuestionBank[], 'java')));
-	update((questions) => questions.concat(mapToQuizQuestions(csharp as QuestionBank[], 'csharp')));
+	for (const [topicKey, questions] of Object.entries(questionBank())) {
+		update((q) => q.concat(mapToQuizQuestions(questions, topicKey)));
+	}
 
 	return {
 		subscribe,
 		expandAll: (activeTopic: string) => {
-			update((questions) =>
-				questions.map((question) => {
-					return activeTopic === question.topicId ? { ...question, expanded: true } : question;
-				})
+			update((q) =>
+				q.map((question) => (activeTopic === question.topicId ? { ...question, expanded: true } : question))
 			);
 		},
 		collapseAll: (activeTopic: string) => {
-			update((questions) =>
-				questions.map((question) => {
-					return activeTopic === question.topicId ? { ...question, expanded: false } : question;
-				})
+			update((q) =>
+				q.map((question) => (activeTopic === question.topicId ? { ...question, expanded: false } : question))
 			);
 		},
 	};

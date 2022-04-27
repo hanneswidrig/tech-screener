@@ -5,10 +5,8 @@ export type TopicKey =
 	| 'csharp'
 	| 'golang'
 	| 'python'
-	| 'cplusplus'
 	| 'react'
 	| 'angular'
-	| 'vue'
 	| 'dotnet'
 	| 'node'
 	| 'aws'
@@ -31,7 +29,6 @@ export const topicGroups: () => TopicGroup[] = () => [
 			{ key: 'csharp', label: 'C#', selected: false },
 			{ key: 'golang', label: 'Go', selected: false },
 			{ key: 'python', label: 'Python', selected: false },
-			{ key: 'cplusplus', label: 'C++', selected: false },
 		],
 	},
 	{
@@ -40,7 +37,6 @@ export const topicGroups: () => TopicGroup[] = () => [
 		items: [
 			{ key: 'react', label: 'React', selected: false },
 			{ key: 'angular', label: 'Angular', selected: false },
-			{ key: 'vue', label: 'Vue', selected: false },
 		],
 	},
 	{
