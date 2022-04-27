@@ -1,5 +1,24 @@
-export type Topic = { key: string; label: string; selected: boolean };
-export type TopicGroup = { key: string; title: string; items: Topic[] };
+export type TopicKey =
+	| 'javascript'
+	| 'typescript'
+	| 'java'
+	| 'csharp'
+	| 'golang'
+	| 'python'
+	| 'cplusplus'
+	| 'react'
+	| 'angular'
+	| 'vue'
+	| 'dotnet'
+	| 'node'
+	| 'aws'
+	| 'azuredeveloper'
+	| 'azurearchitect';
+
+export type TopicGroupKey = 'programmingLanguages' | 'frontEndFrameworks' | 'backEndFrameworks' | 'cloudSolutions';
+
+export type Topic = { key: TopicKey; label: string; selected: boolean };
+export type TopicGroup = { key: TopicGroupKey; title: string; items: Topic[] };
 
 export const topicGroups: () => TopicGroup[] = () => [
 	{
