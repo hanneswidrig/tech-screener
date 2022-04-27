@@ -11,10 +11,13 @@ function mapToQuizQuestions(questions: QuestionBank[], topicId: string): QuizQue
 }
 
 function createQuestions() {
-	const { subscribe, set, update } = writable<QuizQuestion[]>([]);
+	const { subscribe, update } = writable<QuizQuestion[]>([]);
 
-	const { csharp } = questionBank();
-	set(mapToQuizQuestions(csharp, 'csharp'));
+	const { javascript, typescript, java, csharp } = questionBank();
+	update((questions) => questions.concat(mapToQuizQuestions(javascript as QuestionBank[], 'javascript')));
+	update((questions) => questions.concat(mapToQuizQuestions(typescript as QuestionBank[], 'typescript')));
+	update((questions) => questions.concat(mapToQuizQuestions(java as QuestionBank[], 'java')));
+	update((questions) => questions.concat(mapToQuizQuestions(csharp as QuestionBank[], 'csharp')));
 
 	return {
 		subscribe,
@@ -38,9 +41,5 @@ function createQuestions() {
 export const questions = createQuestions();
 
 export const readOnlyQuestions = derived([questions, activeTopic], ([$questions, $activeTopic]) => {
-	if ($activeTopic === 'csharp') {
-		return $questions.filter(({ topicId }) => topicId === $activeTopic);
-	}
-
-	return [];
+	return $questions.filter(({ topicId }) => topicId === $activeTopic);
 });

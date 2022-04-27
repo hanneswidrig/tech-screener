@@ -57,6 +57,6 @@ export const questionBank = (): Partial<Record<TopicKey, QuestionBank[]>> => ({
 		{ question: 'In your own words, describe in C# how to implement the singleton design pattern?', answer: '' },
 		{ question: 'In your own words, describe two methods of type casting in C#? Differences?', answer: '' },
 		{ question: 'Is C# code managed or unmanaged code? Difference?', answer: '' },
-		{ question: 'In your own words, decscribe why garbage collection is important in .NET?', answer: '' },
+		{ question: 'In your own words, describe why garbage collection is important in .NET?', answer: '' },
 	],
 });
