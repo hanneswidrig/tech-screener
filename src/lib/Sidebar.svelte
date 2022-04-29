@@ -4,7 +4,8 @@
 
 	import { quiz } from '$lib/store/quiz';
 	import Button from '$lib/Button.svelte';
-	import Topics from '$lib/Topics.svelte';
+	import ScoreSummary from '$lib/ScoreSummary.svelte';
+	import TopicSwitcher from '$lib/TopicSwitcher.svelte';
 
 	async function goToDashboard(): Promise<void> {
 		quiz.clear();
@@ -15,12 +16,15 @@
 	}
 </script>
 
-<div class="flex flex-col">
+<div class="h-full flex flex-col">
 	<Button theme="zinc" active={$page.url.pathname === '/'} on:click={() => goToDashboard()}>Dashboard</Button>
 
 	<div class="w-full h-px my-4 bg-zinc-300" />
 
 	{#if $page.url.pathname.includes('/quiz')}
-		<Topics />
+		<div class="h-full flex flex-col justify-between">
+			<TopicSwitcher />
+			<ScoreSummary />
+		</div>
 	{/if}
 </div>
