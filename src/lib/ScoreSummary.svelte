@@ -40,7 +40,7 @@
 
 <style lang="postcss">
 	.container {
-		@apply p-4 flex flex-col items-center border border-zinc-300 rounded-md text-white;
+		@apply mt-4 p-4 flex flex-col items-center border border-zinc-300 rounded-md text-white;
 	}
 
 	.container.green {
