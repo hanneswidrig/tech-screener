@@ -25,7 +25,7 @@
 	}
 </script>
 
-<div class="flex flex-col gap-2">
+<div class="mt-4 flex flex-col gap-2">
 	{#each $activeTopics as topic (topic)}
 		<Button theme="zinc" active={$activeTopic === topic} on:click={() => activeTopic.update(topic)}>
 			<div class="flex justify-between">

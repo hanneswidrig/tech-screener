@@ -16,15 +16,18 @@
 	}
 </script>
 
-<div class="h-full flex flex-col">
-	<Button theme="zinc" active={$page.url.pathname === '/'} on:click={() => goToDashboard()}>Dashboard</Button>
+<div class="h-full flex flex-col justify-between">
+	<div class="flex flex-col">
+		<Button theme="zinc" active={$page.url.pathname === '/'} on:click={() => goToDashboard()}>Dashboard</Button>
 
-	<div class="w-full h-px my-4 bg-zinc-300" />
+		<div class="w-full h-px mt-4 bg-zinc-300" />
+
+		{#if $page.url.pathname.includes('/quiz')}
+			<TopicSwitcher />
+		{/if}
+	</div>
 
 	{#if $page.url.pathname.includes('/quiz')}
-		<div class="h-full flex flex-col justify-between">
-			<TopicSwitcher />
-			<ScoreSummary />
-		</div>
+		<ScoreSummary />
 	{/if}
 </div>
