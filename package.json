@@ -13,10 +13,10 @@
 		"format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. ."
 	},
 	"devDependencies": {
-		"@iconify-json/mdi": "^1.1.22",
+		"@iconify-json/mdi": "^1.1.23",
 		"@playwright/test": "^1.22.2",
-		"@sveltejs/adapter-auto": "^1.0.0-next.51",
-		"@sveltejs/kit": "^1.0.0-next.352",
+		"@sveltejs/adapter-auto": "^1.0.0-next.52",
+		"@sveltejs/kit": "^1.0.0-next.354",
 		"@types/uuid": "^8.3.4",
 		"@typescript-eslint/eslint-plugin": "^5.29.0",
 		"@typescript-eslint/parser": "^5.29.0",
