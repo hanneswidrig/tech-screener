@@ -13,7 +13,7 @@
 		"format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. ."
 	},
 	"devDependencies": {
-		"@iconify-json/mdi": "^1.1.23",
+		"@iconify-json/mdi": "^1.1.24",
 		"@playwright/test": "^1.22.2",
 		"@sveltejs/adapter-auto": "^1.0.0-next.52",
 		"@sveltejs/kit": "^1.0.0-next.354",
@@ -28,12 +28,12 @@
 		"prettier": "^2.7.1",
 		"prettier-plugin-svelte": "^2.7.0",
 		"svelte": "^3.48.0",
-		"svelte-check": "^2.7.2",
+		"svelte-check": "^2.8.0",
 		"svelte-preprocess": "^4.10.7",
 		"tailwindcss": "^3.1.4",
 		"tslib": "^2.4.0",
 		"typescript": "^4.7.4",
-		"unplugin-icons": "^0.14.5",
+		"unplugin-icons": "^0.14.6",
 		"uuid": "^8.3.2"
 	},
 	"type": "module"
