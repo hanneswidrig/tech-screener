@@ -17,12 +17,12 @@
 		return -1;
 	}
 
-	function getSummaryTheme(totalScore: number): string {
-		if (70 <= totalScore) {
+	function getSummaryTheme(score: number): string {
+		if (70 <= score) {
 			return 'green';
-		} else if (50 <= totalScore && totalScore < 70) {
+		} else if (50 <= score && score < 70) {
 			return 'yellow';
-		} else if (0 <= totalScore && totalScore < 50) {
+		} else if (0 <= score && score < 50) {
 			return 'red';
 		}
 
