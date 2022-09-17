@@ -1,33 +1,35 @@
 <script lang="ts">
-    import { page } from '$app/stores';
-    import { goto } from '$app/navigation';
+	import { page } from '$app/stores';
+	import { goto } from '$app/navigation';
 
-    import { quiz } from '$lib/store/quiz';
-    import Button from '$lib/Button.svelte';
-    import ScoreSummary from '$lib/ScoreSummary.svelte';
-    import TopicSwitcher from '$lib/TopicSwitcher.svelte';
+	import { quiz } from '$lib/store/quiz';
+	import Button from '$lib/Button.svelte';
+	import ScoreSummary from '$lib/ScoreSummary.svelte';
+	import TopicSwitcher from '$lib/TopicSwitcher.svelte';
 
-    async function goToDashboard(): Promise<void> {
-        quiz.clear();
+	async function goToDashboard(): Promise<void> {
+		quiz.clear();
 
-        if ($page.url.pathname !== '/') {
-            return goto('/');
-        }
-    }
+		if ($page.url.pathname !== '/') {
+			return goto('/');
+		}
+	}
 </script>
 
 <div class="h-full flex flex-col justify-between">
-    <div class="flex flex-col">
-        <Button theme="zinc" active={$page.url.pathname === '/'} on:click={() => goToDashboard()}>Dashboard</Button>
+	<div class="flex flex-col">
+		<Button theme="zinc" active={$page.url.pathname === '/'} on:click={() => goToDashboard()}
+			>Dashboard</Button
+		>
 
-        <div class="w-full h-px mt-4 bg-zinc-300" />
+		<div class="w-full h-px mt-4 bg-zinc-300" />
 
-        {#if $page.url.pathname.includes('/quiz')}
-            <TopicSwitcher />
-        {/if}
-    </div>
+		{#if $page.url.pathname.includes('/quiz')}
+			<TopicSwitcher />
+		{/if}
+	</div>
 
-    {#if $page.url.pathname.includes('/quiz')}
-        <ScoreSummary />
-    {/if}
+	{#if $page.url.pathname.includes('/quiz')}
+		<ScoreSummary />
+	{/if}
 </div>
