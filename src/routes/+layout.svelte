@@ -1,27 +1,27 @@
 <script>
-	import '../app.css';
+    import '../app.css';
 
-	import Sidebar from '$lib/Sidebar.svelte';
+    import Sidebar from '$lib/Sidebar.svelte';
 </script>
 
 <svelte:head>
-	<title>Tech Screening App</title>
+    <title>Tech Screening App</title>
 </svelte:head>
 
 <aside>
-	<Sidebar />
+    <Sidebar />
 </aside>
 
 <main>
-	<slot />
+    <slot />
 </main>
 
 <style lang="postcss">
-	aside {
-		@apply flex flex-col w-64 p-4 h-screen bg-white;
-	}
+    aside {
+        @apply flex flex-col w-64 p-4 h-screen bg-white;
+    }
 
-	main {
-		@apply flex-1 p-4 h-screen overflow-y-scroll;
-	}
+    main {
+        @apply flex-1 p-4 h-screen overflow-y-scroll;
+    }
 </style>
