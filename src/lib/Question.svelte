@@ -31,7 +31,11 @@
 	}
 </script>
 
-<div class="card" on:click={() => (expanded = !expanded)}>
+<div
+	class="card"
+	on:click={() => (expanded = !expanded)}
+	on:keydown={({ key }) => key === ('e' || 'E') && (expanded = !expanded)}
+>
 	<div class="w-full p-4 flex justify-between items-center">
 		<div class="flex items-center">
 			<MdiChevronDown class="text-lg mr-4" transform="rotate({expanded ? 180 : 0})" />
