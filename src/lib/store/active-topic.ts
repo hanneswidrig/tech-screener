@@ -1,11 +1,11 @@
-import { writable } from 'svelte/store';
+import { writable } from "svelte/store";
 
-import { replaceStateWithQuery } from '$lib/utils';
+import { replaceStateWithQuery } from "$lib/utils";
 
 export const activeTopics = writable<string[]>([]);
 
 function createActiveTopic() {
-	const { subscribe, set } = writable('');
+	const { subscribe, set } = writable("");
 	return {
 		subscribe,
 		update: (topic: string) => {

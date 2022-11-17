@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { deriveScoreFromAnswer } from '$lib/utils';
-	import { quiz, type QuizAnswer } from '$lib/store/quiz';
+	import { deriveScoreFromAnswer } from "$lib/utils";
+	import { quiz, type QuizAnswer } from "$lib/store/quiz";
 
 	$: totalScore = getTotalScore($quiz);
 	$: summaryTheme = getSummaryTheme(totalScore);
@@ -9,7 +9,7 @@
 		if (quizAnswers.length > 0) {
 			const scores = quizAnswers.map(({ grade }) => deriveScoreFromAnswer(grade));
 			const currentScore = scores.reduce((prev, curr) => prev + curr, 0);
-			const maxScore = quizAnswers.length * deriveScoreFromAnswer('A');
+			const maxScore = quizAnswers.length * deriveScoreFromAnswer("A");
 			const percentage = Math.round((currentScore / maxScore) * 100);
 			return percentage;
 		}
@@ -19,14 +19,14 @@
 
 	function getSummaryTheme(score: number): string {
 		if (70 <= score) {
-			return 'green';
+			return "green";
 		} else if (50 <= score && score < 70) {
-			return 'yellow';
+			return "yellow";
 		} else if (0 <= score && score < 50) {
-			return 'red';
+			return "red";
 		}
 
-		return 'zinc';
+		return "zinc";
 	}
 </script>
 

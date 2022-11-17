@@ -1,13 +1,13 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
-	import Button from '$lib/Button.svelte';
-	import { topicGroups } from '$lib/data/topic-group';
+	import { goto } from "$app/navigation";
+	import Button from "$lib/Button.svelte";
+	import { topicGroups } from "$lib/data/topic-group";
 
 	let groups = topicGroups();
 
 	$: disabled = groups.every(({ items }) => items.every(({ selected }) => !selected));
 	$: selected = groups.flatMap(({ items }) =>
-		items.filter(({ selected }) => selected).map(({ key }) => key)
+		items.filter(({ selected }) => selected).map(({ key }) => key),
 	);
 
 	function toggleActive(groupKey: string, topicKey: string): void {
@@ -16,7 +16,7 @@
 				return {
 					...group,
 					items: group.items.map((tech) =>
-						tech.key === topicKey ? { ...tech, selected: !tech.selected } : tech
+						tech.key === topicKey ? { ...tech, selected: !tech.selected } : tech,
 					),
 				};
 			}
@@ -28,9 +28,9 @@
 	function navigateToQuiz(): Promise<void> {
 		const queryParams = new URLSearchParams();
 
-		queryParams.set('topic', selected.shift() as string);
+		queryParams.set("topic", selected.shift() as string);
 		for (const key of selected) {
-			queryParams.append('topic', key);
+			queryParams.append("topic", key);
 		}
 
 		return goto(`quiz?${queryParams.toString()}`);
@@ -47,8 +47,7 @@
 						<Button
 							active={item.selected}
 							theme="zinc"
-							on:click={() => toggleActive(group.key, item.key)}
-						>
+							on:click={() => toggleActive(group.key, item.key)}>
 							{item.label}
 						</Button>
 					{/each}
@@ -59,7 +58,6 @@
 
 	<div class="flex justify-center mt-8">
 		<Button {disabled} theme="green" on:click={() => !disabled && navigateToQuiz()}
-			>Start Quiz</Button
-		>
+			>Start Quiz</Button>
 	</div>
 </div>

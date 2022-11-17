@@ -1,8 +1,8 @@
-import { v4 as uuidv4 } from 'uuid';
-import { derived, writable } from 'svelte/store';
+import { v4 as uuidv4 } from "uuid";
+import { derived, writable } from "svelte/store";
 
-import { activeTopic } from '$lib/store/active-topic';
-import { questionBank, type QuestionBank } from '$lib/data/question-bank';
+import { activeTopic } from "$lib/store/active-topic";
+import { questionBank, type QuestionBank } from "$lib/data/question-bank";
 
 export type QuizQuestion = {
 	topicId: string;
@@ -34,15 +34,15 @@ function createQuestions() {
 		expandAll: (activeTopic: string) => {
 			update((q) =>
 				q.map((question) =>
-					activeTopic === question.topicId ? { ...question, expanded: true } : question
-				)
+					activeTopic === question.topicId ? { ...question, expanded: true } : question,
+				),
 			);
 		},
 		collapseAll: (activeTopic: string) => {
 			update((q) =>
 				q.map((question) =>
-					activeTopic === question.topicId ? { ...question, expanded: false } : question
-				)
+					activeTopic === question.topicId ? { ...question, expanded: false } : question,
+				),
 			);
 		},
 	};

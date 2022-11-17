@@ -1,6 +1,6 @@
-import { writable } from 'svelte/store';
+import { writable } from "svelte/store";
 
-export type AnswerKey = 'A' | 'B' | 'C' | 'D' | 'F' | '';
+export type AnswerKey = "A" | "B" | "C" | "D" | "F" | "";
 export type QuizAnswer = { topicId: string; questionId: string; grade: AnswerKey };
 
 function createQuiz() {
@@ -14,17 +14,19 @@ function createQuiz() {
 				prevAnswers.map((v) =>
 					v.questionId === answer.questionId
 						? { topicId: v.topicId, questionId: v.questionId, grade: answer.grade }
-						: v
-				)
+						: v,
+				),
 			);
 		},
 		remove: (answer: QuizAnswer) => {
 			update((prevAnswers) =>
-				prevAnswers.filter((prevAnswer) => prevAnswer.questionId !== answer.questionId)
+				prevAnswers.filter((prevAnswer) => prevAnswer.questionId !== answer.questionId),
 			);
 		},
 		resetTopic: (topicId: string) => {
-			update((prevAnswers) => prevAnswers.filter((prevAnswer) => prevAnswer.topicId !== topicId));
+			update((prevAnswers) =>
+				prevAnswers.filter((prevAnswer) => prevAnswer.topicId !== topicId),
+			);
 		},
 		clear: () => set([]),
 	};

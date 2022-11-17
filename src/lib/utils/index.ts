@@ -1,4 +1,4 @@
-import type { AnswerKey } from '$lib/store/quiz';
+import type { AnswerKey } from "$lib/store/quiz";
 
 /**
  * Replace url query params without page reloads or navigations
@@ -16,7 +16,7 @@ export const replaceStateWithQuery = (values: Record<string, string>): void => {
 		}
 	}
 
-	history.replaceState({}, '', url);
+	history.replaceState({}, "", url);
 };
 
 /**
@@ -24,15 +24,15 @@ export const replaceStateWithQuery = (values: Record<string, string>): void => {
  */
 export function deriveScoreFromAnswer(answerKey: AnswerKey): number {
 	switch (answerKey) {
-		case 'A':
+		case "A":
 			return 10;
-		case 'B':
+		case "B":
 			return 8;
-		case 'C':
+		case "C":
 			return 7;
-		case 'D':
+		case "D":
 			return 6;
-		case 'F':
+		case "F":
 		default:
 			return 0;
 	}

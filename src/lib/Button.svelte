@@ -1,18 +1,17 @@
 <script lang="ts">
 	export let active = false;
 	export let disabled = false;
-	export let theme: 'zinc' | 'green' = 'zinc';
+	export let theme: "zinc" | "green" = "zinc";
 </script>
 
 <button
 	type="button"
 	class="btn"
-	class:btn-zinc={theme === 'zinc'}
-	class:btn-green={theme === 'green'}
+	class:btn-zinc={theme === "zinc"}
+	class:btn-green={theme === "green"}
 	class:active
 	class:disabled
-	on:click
->
+	on:click>
 	<slot />
 </button>
 
