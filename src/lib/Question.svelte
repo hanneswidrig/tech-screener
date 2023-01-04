@@ -1,5 +1,5 @@
 <script lang="ts">
-	import MdiChevronDown from "virtual:icons/mdi/chevron-down";
+	import MdiChevronDown from "~icons/mdi/chevron-down";
 
 	import { quiz, type AnswerKey } from "$lib/store/quiz";
 	import type { QuizQuestion } from "$lib/store/questions";
