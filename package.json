@@ -14,10 +14,10 @@
 		"format": "prettier --plugin-search-dir . --cache --write ."
 	},
 	"devDependencies": {
-		"@iconify-json/mdi": "^1.1.43",
+		"@iconify-json/mdi": "^1.1.44",
 		"@playwright/test": "^1.29.2",
 		"@sveltejs/adapter-auto": "^1.0.2",
-		"@sveltejs/kit": "^1.2.1",
+		"@sveltejs/kit": "^1.2.2",
 		"@types/uuid": "^9.0.0",
 		"@typescript-eslint/eslint-plugin": "^5.48.2",
 		"@typescript-eslint/parser": "^5.48.2",
