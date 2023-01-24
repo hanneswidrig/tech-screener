@@ -29,10 +29,7 @@
 
 <div class="mt-4 flex flex-col gap-2">
 	{#each $activeTopics as topic (topic)}
-		<Button
-			theme="zinc"
-			active={$activeTopic === topic}
-			on:click={() => activeTopic.update(topic)}>
+		<Button active={$activeTopic === topic} on:click={() => activeTopic.update(topic)}>
 			<div class="flex justify-between">
 				<span class="text-left">{getTopicLabel(topic)}</span>
 				<span class="text-right">{getScoreByTopic($quiz, topic)}</span>

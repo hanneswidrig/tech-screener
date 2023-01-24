@@ -18,7 +18,7 @@
 
 <div class="h-full flex flex-col justify-between">
 	<div class="flex flex-col">
-		<Button theme="zinc" active={$page.url.pathname === "/"} on:click={() => goToDashboard()}
+		<Button active={$page.url.pathname === "/"} on:click={() => goToDashboard()}
 			>Dashboard</Button>
 
 		<div class="w-full h-px mt-4 bg-zinc-300" />

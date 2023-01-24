@@ -17,13 +17,11 @@
 
 <div class="flex justify-between mb-4">
 	<div>
-		<Button theme="zinc" on:click={() => questions.expandAll($activeTopic)}>Expand All</Button>
-		<Button theme="zinc" on:click={() => questions.collapseAll($activeTopic)}>
-			Collapse All
-		</Button>
+		<Button on:click={() => questions.expandAll($activeTopic)}>Expand All</Button>
+		<Button on:click={() => questions.collapseAll($activeTopic)}>Collapse All</Button>
 	</div>
 	<div>
-		<Button theme="zinc" on:click={() => quiz.resetTopic($activeTopic)}>Reset</Button>
+		<Button on:click={() => quiz.resetTopic($activeTopic)}>Reset</Button>
 	</div>
 </div>
 

@@ -46,7 +46,6 @@
 					{#each group.items as item (item.key)}
 						<Button
 							active={item.selected}
-							theme="zinc"
 							on:click={() => toggleActive(group.key, item.key)}>
 							{item.label}
 						</Button>
