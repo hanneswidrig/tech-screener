@@ -18,7 +18,7 @@
 
 <div class="flex h-full flex-col justify-between">
 	<div class="flex flex-col">
-		<Button active={$page.url.pathname === "/"} on:click={() => goToDashboard()}
+		<Button active={$page.url.pathname === "/"} onClick={() => goToDashboard()}
 			>Dashboard</Button>
 
 		<div class="mt-4 h-px w-full bg-zinc-300" />

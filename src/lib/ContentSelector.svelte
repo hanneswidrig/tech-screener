@@ -46,7 +46,7 @@
 					{#each group.items as item (item.key)}
 						<Button
 							active={item.selected}
-							on:click={() => toggleActive(group.key, item.key)}>
+							onClick={() => toggleActive(group.key, item.key)}>
 							{item.label}
 						</Button>
 					{/each}
@@ -56,7 +56,6 @@
 	</div>
 
 	<div class="mt-8 flex justify-center">
-		<Button {disabled} theme="green" on:click={() => !disabled && navigateToQuiz()}
-			>Start Quiz</Button>
+		<Button {disabled} theme="green" onClick={() => navigateToQuiz()}>Start Quiz</Button>
 	</div>
 </div>

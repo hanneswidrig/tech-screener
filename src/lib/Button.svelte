@@ -1,34 +1,29 @@
 <script lang="ts">
+	import type { MouseEventHandler } from "svelte/elements";
+	import { cs } from "./utils";
+
 	export let active = false;
 	export let disabled = false;
 	export let theme: "zinc" | "green" = "zinc";
+	export let onClick: MouseEventHandler<HTMLButtonElement>;
 </script>
 
 <button
 	type="button"
-	class="rounded-md border px-4 py-1.5 text-center shadow-sm hover:shadow-md disabled:cursor-default disabled:hover:shadow-sm"
+	class={cs(
+		`rounded-md border px-4 py-1.5 text-center shadow-sm`,
+		`hover:shadow-md disabled:cursor-default disabled:border-gray-300 disabled:bg-gray-50 disabled:text-gray-400 disabled:hover:shadow-sm`,
+		`[&:not(:disabled).green]:border-green-900 [&:not(:disabled).green]:bg-green-700 [&:not(:disabled).green]:text-white`,
+		`[&:not(:disabled).green]:hover:bg-green-800 [&:not(:disabled).green]:active:bg-green-900`,
+		`[&:not(:disabled).zinc]:border-zinc-300 [&:not(:disabled).zinc]:bg-white [&:not(:disabled).zinc]:text-black`,
+		`[&:not(:disabled).zinc]:hover:border-zinc-600`,
+		`[&:not(:disabled).zinc.active]:border-zinc-900 [&:not(:disabled).zinc.active]:bg-zinc-700 [&:not(:disabled).zinc.active]:text-white`,
+		`[&:not(:disabled).zinc.active]:hover:bg-zinc-800`,
+	)}
 	class:zinc={theme === "zinc"}
 	class:green={theme === "green"}
 	class:active
 	{disabled}
-	on:click>
+	on:click={(event) => !disabled && onClick(event)}>
 	<slot />
 </button>
-
-<style lang="postcss">
-	.zinc {
-		@apply border-zinc-300 bg-white text-black hover:border-zinc-600;
-	}
-
-	.zinc.active {
-		@apply border-zinc-900 bg-zinc-700 text-white hover:bg-zinc-800 active:bg-zinc-900;
-	}
-
-	.green {
-		@apply border-green-900 bg-green-700 text-white hover:bg-green-800 active:bg-green-900;
-	}
-
-	.green:disabled {
-		@apply border-gray-300 bg-gray-50 text-gray-400;
-	}
-</style>
