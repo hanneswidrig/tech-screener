@@ -15,7 +15,7 @@
 	});
 </script>
 
-<div class="flex justify-between mb-4">
+<div class="mb-4 flex justify-between">
 	<div>
 		<Button on:click={() => questions.expandAll($activeTopic)}>Expand All</Button>
 		<Button on:click={() => questions.collapseAll($activeTopic)}>Collapse All</Button>

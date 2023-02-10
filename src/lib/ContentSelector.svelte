@@ -37,11 +37,11 @@
 	}
 </script>
 
-<div class="flex flex-col m-4">
+<div class="m-4 flex flex-col">
 	<div class="flex flex-col space-y-8">
 		{#each groups as group (group.key)}
 			<div>
-				<h1 class="text-3xl text-zinc-600 mb-4">{group.title}</h1>
+				<h1 class="mb-4 text-3xl text-zinc-600">{group.title}</h1>
 				<div class="flex flex-wrap gap-2">
 					{#each group.items as item (item.key)}
 						<Button
@@ -55,7 +55,7 @@
 		{/each}
 	</div>
 
-	<div class="flex justify-center mt-8">
+	<div class="mt-8 flex justify-center">
 		<Button {disabled} theme="green" on:click={() => !disabled && navigateToQuiz()}
 			>Start Quiz</Button>
 	</div>

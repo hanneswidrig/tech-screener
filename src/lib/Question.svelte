@@ -32,15 +32,15 @@
 </script>
 
 <div
-	class="card"
+	class="flex cursor-pointer flex-col rounded-md border border-zinc-300 bg-white shadow-sm hover:border-zinc-600 hover:shadow-md"
 	on:click={() => (expanded = !expanded)}
 	on:keydown={({ key }) => key === ("e" || "E") && (expanded = !expanded)}>
-	<div class="w-full p-4 flex justify-between items-center">
+	<div class="flex w-full items-center justify-between p-4">
 		<div class="flex items-center">
-			<MdiChevronDown class="text-lg mr-4" transform="rotate({expanded ? 180 : 0})" />
-			<h2 class="font-bold text-lg">{question.question}</h2>
+			<MdiChevronDown class="mr-4 text-lg" transform="rotate({expanded ? 180 : 0})" />
+			<h2 class="text-lg font-bold">{question.question}</h2>
 		</div>
-		<div class="inline-flex ml-4 space-x-1">
+		<div class="ml-4 inline-flex space-x-1">
 			<button
 				class="option"
 				class:selected={selected === "A"}
@@ -79,12 +79,8 @@
 </div>
 
 <style lang="postcss">
-	.card {
-		@apply flex flex-col bg-white shadow-sm hover:shadow-md rounded-md border border-zinc-300 hover:border-zinc-600 cursor-pointer;
-	}
-
 	.option {
-		@apply px-3.5 py-2 shadow-sm hover:shadow-md border;
+		@apply border px-3.5 py-2 shadow-sm hover:shadow-md;
 	}
 
 	.option:first-of-type {
@@ -96,10 +92,10 @@
 	}
 
 	.option:not(.selected) {
-		@apply text-black bg-white border-blue-300 hover:border-blue-600;
+		@apply border-blue-300 bg-white text-black hover:border-blue-600;
 	}
 
 	.option.selected {
-		@apply text-white bg-blue-700 hover:bg-blue-800 border-blue-900;
+		@apply border-blue-900 bg-blue-700 text-white hover:bg-blue-800;
 	}
 </style>

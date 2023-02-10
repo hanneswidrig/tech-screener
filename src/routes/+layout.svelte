@@ -8,20 +8,10 @@
 	<title>Tech Screening App</title>
 </svelte:head>
 
-<aside>
+<aside class="flex h-screen w-64 flex-col bg-white p-4">
 	<Sidebar />
 </aside>
 
-<main>
+<main class="h-screen flex-1 overflow-y-scroll p-4">
 	<slot />
 </main>
-
-<style lang="postcss">
-	aside {
-		@apply flex flex-col w-64 p-4 h-screen bg-white;
-	}
-
-	main {
-		@apply flex-1 p-4 h-screen overflow-y-scroll;
-	}
-</style>

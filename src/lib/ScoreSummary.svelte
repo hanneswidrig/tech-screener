@@ -19,43 +19,22 @@
 
 	function getSummaryTheme(score: number): string {
 		if (70 <= score) {
-			return "green";
+			return "bg-green-600 border-green-600";
 		} else if (50 <= score && score < 70) {
-			return "yellow";
+			return "bg-yellow-600 border-yellow-600";
 		} else if (0 <= score && score < 50) {
-			return "red";
+			return "bg-red-600 border-red-600";
 		}
 
-		return "zinc";
+		return "bg-zinc-600 border-zinc-600";
 	}
 </script>
 
-<div class="container {summaryTheme}">
+<div
+	class="mt-4 flex flex-col items-center rounded-md border border-zinc-300 p-4 text-white {summaryTheme}">
 	{#if totalScore >= 0}
 		<span class="text-4xl">{totalScore}%</span>
 	{:else}
 		<span class="text-4xl">TBD</span>
 	{/if}
 </div>
-
-<style lang="postcss">
-	.container {
-		@apply mt-4 p-4 flex flex-col items-center border border-zinc-300 rounded-md text-white;
-	}
-
-	.container.green {
-		@apply bg-green-600 border-green-600;
-	}
-
-	.container.yellow {
-		@apply bg-yellow-600 border-yellow-600;
-	}
-
-	.container.red {
-		@apply bg-red-600 border-red-600;
-	}
-
-	.container.zinc {
-		@apply bg-zinc-600 border-zinc-600;
-	}
-</style>

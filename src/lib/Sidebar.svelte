@@ -16,12 +16,12 @@
 	}
 </script>
 
-<div class="h-full flex flex-col justify-between">
+<div class="flex h-full flex-col justify-between">
 	<div class="flex flex-col">
 		<Button active={$page.url.pathname === "/"} on:click={() => goToDashboard()}
 			>Dashboard</Button>
 
-		<div class="w-full h-px mt-4 bg-zinc-300" />
+		<div class="mt-4 h-px w-full bg-zinc-300" />
 
 		{#if $page.url.pathname.includes("/quiz")}
 			<TopicSwitcher />
