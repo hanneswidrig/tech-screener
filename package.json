@@ -10,8 +10,9 @@
 		"test": "playwright test",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"test:unit": "vitest",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
-		"format": "prettier --plugin-search-dir . --cache --write ."
+		"format": "prettier --plugin-search-dir . --write ."
 	},
 	"devDependencies": {
 		"@iconify-json/mdi": "^1.1.46",
@@ -36,6 +37,7 @@
 		"typescript": "^4.9.5",
 		"unplugin-icons": "^0.15.2",
 		"uuid": "^9.0.0",
-		"vite": "^4.1.1"
+		"vite": "^4.1.1",
+		"vitest": "^0.28.4"
 	}
 }

@@ -1,6 +1,5 @@
 /** @type {import('prettier').Options} */
 module.exports = {
-	bracketSameLine: true,
 	overrides: [
 		{
 			files: "*.svelte",
@@ -9,10 +8,10 @@ module.exports = {
 			},
 		},
 	],
-	pluginSearchDirs: ["."],
 	plugins: [require("prettier-plugin-tailwindcss")],
-	printWidth: 100,
 	tabWidth: 4,
-	trailingComma: "all",
 	useTabs: true,
+	printWidth: 100,
+	trailingComma: "all",
+	bracketSameLine: true,
 };
