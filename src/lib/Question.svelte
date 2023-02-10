@@ -43,6 +43,7 @@
 		</div>
 		<div class="ml-4 inline-flex space-x-1">
 			<button
+				type="button"
 				class={cs(
 					`rounded-tl-md rounded-bl-md`,
 					`border border-blue-300 bg-white px-3.5 py-2 text-black shadow-sm hover:border-blue-600 hover:shadow-md`,
@@ -53,6 +54,7 @@
 				A
 			</button>
 			<button
+				type="button"
 				class={cs(
 					`border border-blue-300 bg-white px-3.5 py-2 text-black shadow-sm hover:border-blue-600 hover:shadow-md`,
 					`[&.selected]:border-blue-900 [&.selected]:bg-blue-700 [&.selected]:text-white [&.selected]:hover:bg-blue-800`,
@@ -62,6 +64,7 @@
 				B
 			</button>
 			<button
+				type="button"
 				class={cs(
 					`border border-blue-300 bg-white px-3.5 py-2 text-black shadow-sm hover:border-blue-600 hover:shadow-md`,
 					`[&.selected]:border-blue-900 [&.selected]:bg-blue-700 [&.selected]:text-white [&.selected]:hover:bg-blue-800`,
@@ -71,6 +74,7 @@
 				C
 			</button>
 			<button
+				type="button"
 				class={cs(
 					`border border-blue-300 bg-white px-3.5 py-2 text-black shadow-sm hover:border-blue-600 hover:shadow-md`,
 					`[&.selected]:border-blue-900 [&.selected]:bg-blue-700 [&.selected]:text-white [&.selected]:hover:bg-blue-800`,
@@ -80,6 +84,7 @@
 				D
 			</button>
 			<button
+				type="button"
 				class={cs(
 					`rounded-tr-md rounded-br-md`,
 					`border border-blue-300 bg-white px-3.5 py-2 text-black shadow-sm hover:border-blue-600 hover:shadow-md`,
