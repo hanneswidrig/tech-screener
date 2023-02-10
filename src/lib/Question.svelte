@@ -3,6 +3,7 @@
 
 	import { quiz, type AnswerKey } from "$lib/store/quiz";
 	import type { QuizQuestion } from "$lib/store/questions";
+	import { cs } from "./utils";
 
 	export let question: QuizQuestion;
 	export let expanded = false;
@@ -42,31 +43,48 @@
 		</div>
 		<div class="ml-4 inline-flex space-x-1">
 			<button
-				class="option"
+				class={cs(
+					`rounded-tl-md rounded-bl-md`,
+					`border border-blue-300 bg-white px-3.5 py-2 text-black shadow-sm hover:border-blue-600 hover:shadow-md`,
+					`[&.selected]:border-blue-900 [&.selected]:bg-blue-700 [&.selected]:text-white [&.selected]:hover:bg-blue-800`,
+				)}
 				class:selected={selected === "A"}
 				on:click|stopPropagation={() => onAnswerSelected("A")}>
 				A
 			</button>
 			<button
-				class="option"
+				class={cs(
+					`border border-blue-300 bg-white px-3.5 py-2 text-black shadow-sm hover:border-blue-600 hover:shadow-md`,
+					`[&.selected]:border-blue-900 [&.selected]:bg-blue-700 [&.selected]:text-white [&.selected]:hover:bg-blue-800`,
+				)}
 				class:selected={selected === "B"}
 				on:click|stopPropagation={() => onAnswerSelected("B")}>
 				B
 			</button>
 			<button
-				class="option"
+				class={cs(
+					`border border-blue-300 bg-white px-3.5 py-2 text-black shadow-sm hover:border-blue-600 hover:shadow-md`,
+					`[&.selected]:border-blue-900 [&.selected]:bg-blue-700 [&.selected]:text-white [&.selected]:hover:bg-blue-800`,
+				)}
 				class:selected={selected === "C"}
 				on:click|stopPropagation={() => onAnswerSelected("C")}>
 				C
 			</button>
 			<button
-				class="option"
+				class={cs(
+					`border border-blue-300 bg-white px-3.5 py-2 text-black shadow-sm hover:border-blue-600 hover:shadow-md`,
+					`[&.selected]:border-blue-900 [&.selected]:bg-blue-700 [&.selected]:text-white [&.selected]:hover:bg-blue-800`,
+				)}
 				class:selected={selected === "D"}
 				on:click|stopPropagation={() => onAnswerSelected("D")}>
 				D
 			</button>
 			<button
-				class="option"
+				class={cs(
+					`rounded-tr-md rounded-br-md`,
+					`border border-blue-300 bg-white px-3.5 py-2 text-black shadow-sm hover:border-blue-600 hover:shadow-md`,
+					`[&.selected]:border-blue-900 [&.selected]:bg-blue-700 [&.selected]:text-white [&.selected]:hover:bg-blue-800`,
+				)}
 				class:selected={selected === "F"}
 				on:click|stopPropagation={() => onAnswerSelected("F")}>
 				F
@@ -77,25 +95,3 @@
 		<div class="w-full p-4">{question.answer}</div>
 	{/if}
 </div>
-
-<style lang="postcss">
-	.option {
-		@apply border px-3.5 py-2 shadow-sm hover:shadow-md;
-	}
-
-	.option:first-of-type {
-		@apply rounded-tl-md rounded-bl-md;
-	}
-
-	.option:last-of-type {
-		@apply rounded-tr-md rounded-br-md;
-	}
-
-	.option:not(.selected) {
-		@apply border-blue-300 bg-white text-black hover:border-blue-600;
-	}
-
-	.option.selected {
-		@apply border-blue-900 bg-blue-700 text-white hover:bg-blue-800;
-	}
-</style>
