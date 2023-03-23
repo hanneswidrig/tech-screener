@@ -5,10 +5,10 @@ module.exports = {
 		"eslint:recommended",
 		"plugin:@typescript-eslint/recommended",
 		"plugin:svelte/recommended",
-		"prettier",
+		"plugin:svelte/prettier",
 	],
 	plugins: ["@typescript-eslint"],
-	ignorePatterns: ["svelte.config.js", "*.cjs"],
+	ignorePatterns: ["*.cjs"],
 	overrides: [
 		{
 			files: ["*.svelte"],
@@ -21,7 +21,6 @@ module.exports = {
 	parserOptions: {
 		sourceType: "module",
 		ecmaVersion: 2020,
-		project: "./tsconfig.json",
 		extraFileExtensions: [".svelte"],
 	},
 	env: {

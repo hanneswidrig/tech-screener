@@ -9,7 +9,6 @@
 </script>
 
 <button
-	type="button"
 	class={cs(
 		`rounded-md border px-4 py-1.5 text-center shadow-sm`,
 		`hover:shadow-md disabled:cursor-default disabled:border-gray-300 disabled:bg-gray-50 disabled:text-gray-400 disabled:hover:shadow-sm`,
@@ -20,10 +19,11 @@
 		`[&:not(:disabled).zinc.active]:border-zinc-900 [&:not(:disabled).zinc.active]:bg-zinc-700 [&:not(:disabled).zinc.active]:text-white`,
 		`[&:not(:disabled).zinc.active]:hover:bg-zinc-800`,
 	)}
-	class:zinc={theme === "zinc"}
-	class:green={theme === "green"}
 	class:active
+	class:green={theme === "green"}
+	class:zinc={theme === "zinc"}
 	{disabled}
+	type="button"
 	on:click={(event) => !disabled && onClick(event)}>
 	<slot />
 </button>
