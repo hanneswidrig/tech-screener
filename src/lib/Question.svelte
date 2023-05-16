@@ -45,7 +45,7 @@
 			<button
 				type="button"
 				class={cs(
-					`rounded-tl-md rounded-bl-md`,
+					`rounded-bl-md rounded-tl-md`,
 					`border border-blue-300 bg-white px-3.5 py-2 text-black shadow-sm hover:border-blue-600 hover:shadow-md`,
 					`[&.selected]:border-blue-900 [&.selected]:bg-blue-700 [&.selected]:text-white [&.selected]:hover:bg-blue-800`,
 				)}
@@ -86,7 +86,7 @@
 			<button
 				type="button"
 				class={cs(
-					`rounded-tr-md rounded-br-md`,
+					`rounded-br-md rounded-tr-md`,
 					`border border-blue-300 bg-white px-3.5 py-2 text-black shadow-sm hover:border-blue-600 hover:shadow-md`,
 					`[&.selected]:border-blue-900 [&.selected]:bg-blue-700 [&.selected]:text-white [&.selected]:hover:bg-blue-800`,
 				)}

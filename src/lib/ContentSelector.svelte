@@ -11,18 +11,13 @@
 	);
 
 	function toggleActive(groupKey: string, topicKey: string): void {
-		groups = groups.map((group) => {
-			if (group.key === groupKey) {
-				return {
-					...group,
-					items: group.items.map((tech) =>
-						tech.key === topicKey ? { ...tech, selected: !tech.selected } : tech,
-					),
-				};
-			}
+		const group = groups.find((group) => group.key === groupKey);
+		const item = group?.items.find((item) => item.key === topicKey);
+		if (item) {
+			item.selected = !item.selected;
+		}
 
-			return group;
-		});
+		groups = groups;
 	}
 
 	function navigateToQuiz(): Promise<void> {
