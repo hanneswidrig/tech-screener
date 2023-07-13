@@ -34,6 +34,8 @@
 
 <div
 	class="flex cursor-pointer flex-col rounded-md border border-zinc-300 bg-white shadow-sm hover:border-zinc-600 hover:shadow-md"
+	role="button"
+	tabindex="0"
 	on:click={() => (expanded = !expanded)}
 	on:keydown={({ key }) => key === ("e" || "E") && (expanded = !expanded)}>
 	<div class="flex w-full items-center justify-between p-4">
