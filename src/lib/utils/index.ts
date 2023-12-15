@@ -1,3 +1,4 @@
+import { goto } from "$app/navigation";
 import type { AnswerKey } from "$lib/store/quiz";
 
 /**
@@ -5,18 +6,18 @@ import type { AnswerKey } from "$lib/store/quiz";
  *
  * https://dev.to/mohamadharith/mutating-query-params-in-sveltekit-without-page-reloads-or-navigations-2i2b
  */
-export const replaceStateWithQuery = (values: Record<string, string>): void => {
+export const replaceStateWithQuery = (values: Record<string, string | undefined>): void => {
 	const url = new URL(window.location.toString());
 
-	for (const [k, v] of Object.entries(values)) {
-		if (v) {
-			url.searchParams.set(encodeURIComponent(k), encodeURIComponent(v));
+	for (const [key, value] of Object.entries(values)) {
+		if (value) {
+			url.searchParams.set(key, value);
 		} else {
-			url.searchParams.delete(k);
+			url.searchParams.delete(key);
 		}
 	}
 
-	history.replaceState({}, "", url);
+	goto(url, { replaceState: true });
 };
 
 /**
