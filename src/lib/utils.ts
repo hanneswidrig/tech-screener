@@ -1,6 +1,8 @@
 import { goto } from "$app/navigation";
 import type { AnswerKey } from "$lib/store/quiz";
 
+export const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
 /**
  * Replace url query params without page reloads or navigations
  *
