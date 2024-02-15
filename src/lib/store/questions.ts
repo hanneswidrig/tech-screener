@@ -1,4 +1,3 @@
-import { v4 as uuidv4 } from "uuid";
 import { derived, writable } from "svelte/store";
 
 import { activeTopic } from "$lib/store/active-topic";
@@ -15,7 +14,7 @@ export type QuizQuestion = {
 function mapToQuizQuestions(questions: QuestionBank[], topicId: string): QuizQuestion[] {
 	return questions.map(({ question, answer }) => ({
 		topicId,
-		id: uuidv4(),
+		id: window.crypto.randomUUID(),
 		question,
 		answer,
 		expanded: false,
