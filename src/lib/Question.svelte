@@ -37,7 +37,7 @@
 	role="button"
 	tabindex="0"
 	on:click={() => (expanded = !expanded)}
-	on:keydown={({ key }) => key === ("e" || "E") && (expanded = !expanded)}>
+	on:keydown={({ key }) => (key === "e" || key === "E") && (expanded = !expanded)}>
 	<div class="flex w-full items-center justify-between p-4">
 		<div class="flex items-center">
 			<MdiChevronDown class="mr-4 text-lg" transform="rotate({expanded ? 180 : 0})" />
