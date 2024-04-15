@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { MouseEventHandler } from "svelte/elements";
-	import { cs } from "./utils";
+	import { twMerge } from "tailwind-merge";
 
 	export let active = false;
 	export let disabled = false;
@@ -9,7 +9,7 @@
 </script>
 
 <button
-	class={cs(
+	class={twMerge(
 		`rounded-md border px-4 py-1.5 text-center shadow-sm`,
 		`hover:shadow-md disabled:cursor-default disabled:border-gray-300 disabled:bg-gray-50 disabled:text-gray-400 disabled:hover:shadow-sm`,
 		`[&:not(:disabled).green]:border-green-900 [&:not(:disabled).green]:bg-green-700 [&:not(:disabled).green]:text-white`,

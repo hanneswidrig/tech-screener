@@ -40,12 +40,3 @@ export function deriveScoreFromAnswer(answerKey: AnswerKey): number {
 			return 0;
 	}
 }
-
-/**
- * Flatten collections of Tailwind CSS classes
- *
- * Example: cs('text-red', 'text-bold') => "text-red text-bold"
- */
-export function cs(...tailwindClassnames: string[]): string {
-	return tailwindClassnames.join(" ");
-}

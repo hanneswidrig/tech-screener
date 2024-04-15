@@ -1,9 +1,9 @@
 <script lang="ts">
 	import MdiChevronDown from "~icons/mdi/chevron-down";
+	import { twMerge } from "tailwind-merge";
 
 	import { quiz, type AnswerKey } from "$lib/store/quiz";
 	import type { QuizQuestion } from "$lib/store/questions";
-	import { cs } from "./utils";
 
 	export let question: QuizQuestion;
 	export let expanded = false;
@@ -46,7 +46,7 @@
 		<div class="ml-4 inline-flex space-x-1">
 			<button
 				type="button"
-				class={cs(
+				class={twMerge(
 					`rounded-bl-md rounded-tl-md`,
 					`border border-blue-300 bg-white px-3.5 py-2 text-black shadow-sm hover:border-blue-600 hover:shadow-md`,
 					`[&.selected]:border-blue-900 [&.selected]:bg-blue-700 [&.selected]:text-white [&.selected]:hover:bg-blue-800`,
@@ -57,7 +57,7 @@
 			</button>
 			<button
 				type="button"
-				class={cs(
+				class={twMerge(
 					`border border-blue-300 bg-white px-3.5 py-2 text-black shadow-sm hover:border-blue-600 hover:shadow-md`,
 					`[&.selected]:border-blue-900 [&.selected]:bg-blue-700 [&.selected]:text-white [&.selected]:hover:bg-blue-800`,
 				)}
@@ -67,7 +67,7 @@
 			</button>
 			<button
 				type="button"
-				class={cs(
+				class={twMerge(
 					`border border-blue-300 bg-white px-3.5 py-2 text-black shadow-sm hover:border-blue-600 hover:shadow-md`,
 					`[&.selected]:border-blue-900 [&.selected]:bg-blue-700 [&.selected]:text-white [&.selected]:hover:bg-blue-800`,
 				)}
@@ -77,7 +77,7 @@
 			</button>
 			<button
 				type="button"
-				class={cs(
+				class={twMerge(
 					`border border-blue-300 bg-white px-3.5 py-2 text-black shadow-sm hover:border-blue-600 hover:shadow-md`,
 					`[&.selected]:border-blue-900 [&.selected]:bg-blue-700 [&.selected]:text-white [&.selected]:hover:bg-blue-800`,
 				)}
@@ -87,7 +87,7 @@
 			</button>
 			<button
 				type="button"
-				class={cs(
+				class={twMerge(
 					`rounded-br-md rounded-tr-md`,
 					`border border-blue-300 bg-white px-3.5 py-2 text-black shadow-sm hover:border-blue-600 hover:shadow-md`,
 					`[&.selected]:border-blue-900 [&.selected]:bg-blue-700 [&.selected]:text-white [&.selected]:hover:bg-blue-800`,
