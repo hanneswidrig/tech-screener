@@ -1,7 +1,7 @@
-import type { AnswerKey } from "$lib/store/quiz";
+import type { Grade } from "$lib/store/quiz.svelte";
 
-export function calculateScore(answerKey: AnswerKey): number {
-	switch (answerKey) {
+export function calculateScore(grade: Grade): number {
+	switch (grade) {
 		case "A":
 			return 10;
 		case "B":

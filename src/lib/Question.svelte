@@ -2,8 +2,8 @@
 	import MdiChevronDown from "~icons/mdi/chevron-down";
 	import { twMerge } from "tailwind-merge";
 
-	import { quiz as quizLegacy, type AnswerKey } from "$lib/store/quiz";
-	import type { QuizQuestion } from "$lib/store/questions";
+	import { quiz, type Grade } from "$lib/store/quiz.svelte";
+	import type { QuizQuestion } from "$lib/store/questions.svelte";
 
 	interface Props {
 		question: QuizQuestion;
@@ -12,30 +12,30 @@
 
 	let { question, expanded = $bindable(false) }: Props = $props();
 
-	let selected = $derived(
-		$quizLegacy.find(({ questionId }) => questionId === question.id)?.grade ?? "",
+	let selectedGrade = $derived(
+		quiz.answers.find(({ questionId }) => questionId === question.id)?.grade ?? "",
 	);
 
-	function onSelectAnswer(e: Event, answer: AnswerKey): void {
+	function onSelectAnswer(e: Event, grade: Grade): void {
 		e.stopPropagation();
 
 		const topicId = question.topicId;
 		const questionId = question.id;
 
-		const deselect = selected === answer;
-		const changeSelect = selected !== "" && selected !== answer;
-		const select = selected === "" && selected !== answer;
+		const deselect = selectedGrade === grade;
+		const changeSelect = selectedGrade !== "" && selectedGrade !== grade;
+		const select = selectedGrade === "" && selectedGrade !== grade;
 
 		if (deselect) {
-			quizLegacy.remove({ topicId, questionId, grade: answer });
+			quiz.remove({ topicId, questionId, grade });
 		}
 
 		if (changeSelect) {
-			quizLegacy.update({ topicId, questionId, grade: answer });
+			quiz.update({ topicId, questionId, grade });
 		}
 
 		if (select) {
-			quizLegacy.add({ topicId, questionId, grade: answer });
+			quiz.add({ topicId, questionId, grade });
 		}
 	}
 </script>
@@ -51,6 +51,7 @@
 			<MdiChevronDown class="mr-4 text-lg" transform="rotate({expanded ? 180 : 0})" />
 			<h2 class="text-lg font-bold">{question.question}</h2>
 		</div>
+
 		<div class="ml-4 inline-flex space-x-1">
 			<button
 				type="button"
@@ -59,40 +60,44 @@
 					`border border-blue-300 bg-white px-3.5 py-2 text-black shadow-sm hover:border-blue-600 hover:shadow-md`,
 					`[&.selected]:border-blue-900 [&.selected]:bg-blue-700 [&.selected]:text-white [&.selected]:hover:bg-blue-800`,
 				)}
-				class:selected={selected === "A"}
+				class:selected={selectedGrade === "A"}
 				onclick={(e) => onSelectAnswer(e, "A")}>
 				A
 			</button>
+
 			<button
 				type="button"
 				class={twMerge(
 					`border border-blue-300 bg-white px-3.5 py-2 text-black shadow-sm hover:border-blue-600 hover:shadow-md`,
 					`[&.selected]:border-blue-900 [&.selected]:bg-blue-700 [&.selected]:text-white [&.selected]:hover:bg-blue-800`,
 				)}
-				class:selected={selected === "B"}
+				class:selected={selectedGrade === "B"}
 				onclick={(e) => onSelectAnswer(e, "B")}>
 				B
 			</button>
+
 			<button
 				type="button"
 				class={twMerge(
 					`border border-blue-300 bg-white px-3.5 py-2 text-black shadow-sm hover:border-blue-600 hover:shadow-md`,
 					`[&.selected]:border-blue-900 [&.selected]:bg-blue-700 [&.selected]:text-white [&.selected]:hover:bg-blue-800`,
 				)}
-				class:selected={selected === "C"}
+				class:selected={selectedGrade === "C"}
 				onclick={(e) => onSelectAnswer(e, "C")}>
 				C
 			</button>
+
 			<button
 				type="button"
 				class={twMerge(
 					`border border-blue-300 bg-white px-3.5 py-2 text-black shadow-sm hover:border-blue-600 hover:shadow-md`,
 					`[&.selected]:border-blue-900 [&.selected]:bg-blue-700 [&.selected]:text-white [&.selected]:hover:bg-blue-800`,
 				)}
-				class:selected={selected === "D"}
+				class:selected={selectedGrade === "D"}
 				onclick={(e) => onSelectAnswer(e, "D")}>
 				D
 			</button>
+
 			<button
 				type="button"
 				class={twMerge(
@@ -100,12 +105,13 @@
 					`border border-blue-300 bg-white px-3.5 py-2 text-black shadow-sm hover:border-blue-600 hover:shadow-md`,
 					`[&.selected]:border-blue-900 [&.selected]:bg-blue-700 [&.selected]:text-white [&.selected]:hover:bg-blue-800`,
 				)}
-				class:selected={selected === "F"}
+				class:selected={selectedGrade === "F"}
 				onclick={(e) => onSelectAnswer(e, "F")}>
 				F
 			</button>
 		</div>
 	</div>
+
 	{#if expanded}
 		<div class="w-full p-4">{question.answer}</div>
 	{/if}

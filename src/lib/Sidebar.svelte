@@ -2,7 +2,7 @@
 	import { page } from "$app/stores";
 	import { goto } from "$app/navigation";
 
-	import { quiz as quizLegacy } from "$lib/store/quiz";
+	import { quiz } from "$lib/store/quiz.svelte";
 	import Button from "$lib/Button.svelte";
 	import ScoreSummary from "$lib/ScoreSummary.svelte";
 	import TopicSwitcher from "$lib/TopicSwitcher.svelte";
@@ -10,7 +10,7 @@
 	let pathname = $derived($page.url.pathname);
 
 	async function goToDashboard(): Promise<void> {
-		quizLegacy.clear();
+		quiz.clear();
 
 		if (pathname !== "/") {
 			return goto("/");

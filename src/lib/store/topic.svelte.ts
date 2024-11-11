@@ -8,9 +8,13 @@ class Topic {
 		return this.active === topic;
 	}
 
-	setActive(topic: string | null) {
+	setActive(topic: string | null): void {
 		this.active = topic ?? this.all.at(0) ?? "";
 		replaceStateWithQuery({ selected: this.active });
+	}
+
+	setAll(topics: string[]): void {
+		this.all = topics;
 	}
 }
 
