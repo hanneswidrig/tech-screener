@@ -21,7 +21,7 @@
 		<Button active={$page.url.pathname === "/"} onClick={() => goToDashboard()}
 			>Dashboard</Button>
 
-		<div class="mt-4 h-px w-full bg-zinc-300" />
+		<div class="mt-4 h-px w-full bg-zinc-300"></div>
 
 		{#if $page.url.pathname.includes("/quiz")}
 			<TopicSwitcher />
