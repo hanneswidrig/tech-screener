@@ -7,10 +7,12 @@
 	import ScoreSummary from "$lib/ScoreSummary.svelte";
 	import TopicSwitcher from "$lib/TopicSwitcher.svelte";
 
+	let pathname = $derived($page.url.pathname);
+
 	async function goToDashboard(): Promise<void> {
 		quiz.clear();
 
-		if ($page.url.pathname !== "/") {
+		if (pathname !== "/") {
 			return goto("/");
 		}
 	}
@@ -18,17 +20,16 @@
 
 <div class="flex h-full flex-col justify-between">
 	<div class="flex flex-col">
-		<Button active={$page.url.pathname === "/"} onClick={() => goToDashboard()}
-			>Dashboard</Button>
+		<Button active={pathname === "/"} onClick={() => goToDashboard()}>Dashboard</Button>
 
 		<div class="mt-4 h-px w-full bg-zinc-300"></div>
 
-		{#if $page.url.pathname.includes("/quiz")}
+		{#if pathname.includes("/quiz")}
 			<TopicSwitcher />
 		{/if}
 	</div>
 
-	{#if $page.url.pathname.includes("/quiz")}
+	{#if pathname.includes("/quiz")}
 		<ScoreSummary />
 	{/if}
 </div>

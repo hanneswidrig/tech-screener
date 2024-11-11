@@ -3,12 +3,12 @@
 	import Button from "$lib/Button.svelte";
 	import { topicGroups } from "$lib/data/topic-group";
 
-	let groups = topicGroups();
+	let groups = $state(topicGroups());
 
-	$: disabled = groups.every(({ items }) => items.every(({ selected }) => !selected));
-	$: selected = groups.flatMap(({ items }) =>
+	let disabled = $derived(groups.every(({ items }) => items.every(({ selected }) => !selected)));
+	let selected = $derived(groups.flatMap(({ items }) =>
 		items.filter(({ selected }) => selected).map(({ key }) => key),
-	);
+	));
 
 	function toggleActive(groupKey: string, topicKey: string): void {
 		const group = groups.find((group) => group.key === groupKey);

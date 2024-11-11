@@ -1,7 +1,14 @@
-<script>
+<script lang="ts">
 	import "../app.css";
 
 	import Sidebar from "$lib/Sidebar.svelte";
+	interface Props {
+		children?: import('svelte').Snippet;
+	}
+
+	let { children }: Props = $props();
+
+	const children_render = $derived(children);
 </script>
 
 <svelte:head>
@@ -13,5 +20,5 @@
 </aside>
 
 <main class="h-screen flex-1 overflow-y-scroll p-4">
-	<slot />
+	{@render children_render?.()}
 </main>

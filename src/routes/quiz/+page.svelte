@@ -8,10 +8,12 @@
 	import { questions, readOnlyQuestions } from "$lib/store/questions";
 	import { activeTopic, activeTopics } from "$lib/store/active-topic";
 
+	let searchParams = $derived($page.url.searchParams);
+
 	onMount(() => {
-		const selectedTopics = $page.url.searchParams.getAll("topic");
+		const selectedTopics = searchParams.getAll("topic");
 		activeTopics.set(selectedTopics);
-		activeTopic.update($page.url.searchParams.get("selected") ?? selectedTopics[0]);
+		activeTopic.update(searchParams.get("selected") ?? selectedTopics[0]);
 	});
 </script>
 

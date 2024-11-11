@@ -2,10 +2,23 @@
 	import type { MouseEventHandler } from "svelte/elements";
 	import { twMerge } from "tailwind-merge";
 
-	export let active = false;
-	export let disabled = false;
-	export let theme: "zinc" | "green" = "zinc";
-	export let onClick: MouseEventHandler<HTMLButtonElement>;
+	interface Props {
+		active?: boolean;
+		disabled?: boolean;
+		theme?: "zinc" | "green";
+		onClick: MouseEventHandler<HTMLButtonElement>;
+		children?: import('svelte').Snippet;
+	}
+
+	let {
+		active = false,
+		disabled = false,
+		theme = "zinc",
+		onClick,
+		children
+	}: Props = $props();
+
+	const children_render = $derived(children);
 </script>
 
 <button
@@ -24,6 +37,6 @@
 	class:zinc={theme === "zinc"}
 	{disabled}
 	type="button"
-	on:click={(event) => !disabled && onClick(event)}>
-	<slot />
+	onclick={(event) => !disabled && onClick(event)}>
+	{@render children_render?.()}
 </button>

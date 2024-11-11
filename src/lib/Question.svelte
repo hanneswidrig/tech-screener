@@ -1,14 +1,20 @@
 <script lang="ts">
+	import { stopPropagation } from 'svelte/legacy';
+
 	import MdiChevronDown from "~icons/mdi/chevron-down";
 	import { twMerge } from "tailwind-merge";
 
 	import { quiz, type AnswerKey } from "$lib/store/quiz";
 	import type { QuizQuestion } from "$lib/store/questions";
 
-	export let question: QuizQuestion;
-	export let expanded = false;
+	interface Props {
+		question: QuizQuestion;
+		expanded?: boolean;
+	}
 
-	$: selected = $quiz.find(({ questionId }) => questionId === question.id)?.grade ?? "";
+	let { question, expanded = $bindable(false) }: Props = $props();
+
+	let selected = $derived($quiz.find(({ questionId }) => questionId === question.id)?.grade ?? "");
 
 	function onAnswerSelected(answer: AnswerKey): void {
 		const topicId = question.topicId;
@@ -36,8 +42,8 @@
 	class="flex cursor-pointer flex-col rounded-md border border-zinc-300 bg-white shadow-sm hover:border-zinc-600 hover:shadow-md"
 	role="button"
 	tabindex="0"
-	on:click={() => (expanded = !expanded)}
-	on:keydown={({ key }) => (key === "e" || key === "E") && (expanded = !expanded)}>
+	onclick={() => (expanded = !expanded)}
+	onkeydown={({ key }) => (key === "e" || key === "E") && (expanded = !expanded)}>
 	<div class="flex w-full items-center justify-between p-4">
 		<div class="flex items-center">
 			<MdiChevronDown class="mr-4 text-lg" transform="rotate({expanded ? 180 : 0})" />
@@ -52,7 +58,7 @@
 					`[&.selected]:border-blue-900 [&.selected]:bg-blue-700 [&.selected]:text-white [&.selected]:hover:bg-blue-800`,
 				)}
 				class:selected={selected === "A"}
-				on:click|stopPropagation={() => onAnswerSelected("A")}>
+				onclick={stopPropagation(() => onAnswerSelected("A"))}>
 				A
 			</button>
 			<button
@@ -62,7 +68,7 @@
 					`[&.selected]:border-blue-900 [&.selected]:bg-blue-700 [&.selected]:text-white [&.selected]:hover:bg-blue-800`,
 				)}
 				class:selected={selected === "B"}
-				on:click|stopPropagation={() => onAnswerSelected("B")}>
+				onclick={stopPropagation(() => onAnswerSelected("B"))}>
 				B
 			</button>
 			<button
@@ -72,7 +78,7 @@
 					`[&.selected]:border-blue-900 [&.selected]:bg-blue-700 [&.selected]:text-white [&.selected]:hover:bg-blue-800`,
 				)}
 				class:selected={selected === "C"}
-				on:click|stopPropagation={() => onAnswerSelected("C")}>
+				onclick={stopPropagation(() => onAnswerSelected("C"))}>
 				C
 			</button>
 			<button
@@ -82,7 +88,7 @@
 					`[&.selected]:border-blue-900 [&.selected]:bg-blue-700 [&.selected]:text-white [&.selected]:hover:bg-blue-800`,
 				)}
 				class:selected={selected === "D"}
-				on:click|stopPropagation={() => onAnswerSelected("D")}>
+				onclick={stopPropagation(() => onAnswerSelected("D"))}>
 				D
 			</button>
 			<button
@@ -93,7 +99,7 @@
 					`[&.selected]:border-blue-900 [&.selected]:bg-blue-700 [&.selected]:text-white [&.selected]:hover:bg-blue-800`,
 				)}
 				class:selected={selected === "F"}
-				on:click|stopPropagation={() => onAnswerSelected("F")}>
+				onclick={stopPropagation(() => onAnswerSelected("F"))}>
 				F
 			</button>
 		</div>

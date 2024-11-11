@@ -2,9 +2,6 @@
 	import { deriveScoreFromAnswer } from "$lib/utils";
 	import { quiz, type QuizAnswer } from "$lib/store/quiz";
 
-	$: totalScore = getTotalScore($quiz);
-	$: summaryTheme = getSummaryTheme(totalScore);
-
 	function getTotalScore(quizAnswers: QuizAnswer[]): number {
 		if (quizAnswers.length > 0) {
 			const scores = quizAnswers.map(({ grade }) => deriveScoreFromAnswer(grade));
@@ -28,6 +25,9 @@
 
 		return "bg-zinc-600 border-zinc-600";
 	}
+
+	let totalScore = $derived(getTotalScore($quiz));
+	let summaryTheme = $derived(getSummaryTheme(totalScore));
 </script>
 
 <div
