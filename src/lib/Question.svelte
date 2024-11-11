@@ -1,10 +1,8 @@
 <script lang="ts">
-	import { stopPropagation } from 'svelte/legacy';
-
 	import MdiChevronDown from "~icons/mdi/chevron-down";
 	import { twMerge } from "tailwind-merge";
 
-	import { quiz, type AnswerKey } from "$lib/store/quiz";
+	import { quiz as quizLegacy, type AnswerKey } from "$lib/store/quiz";
 	import type { QuizQuestion } from "$lib/store/questions";
 
 	interface Props {
@@ -14,9 +12,13 @@
 
 	let { question, expanded = $bindable(false) }: Props = $props();
 
-	let selected = $derived($quiz.find(({ questionId }) => questionId === question.id)?.grade ?? "");
+	let selected = $derived(
+		$quizLegacy.find(({ questionId }) => questionId === question.id)?.grade ?? "",
+	);
 
-	function onAnswerSelected(answer: AnswerKey): void {
+	function onSelectAnswer(e: Event, answer: AnswerKey): void {
+		e.stopPropagation();
+
 		const topicId = question.topicId;
 		const questionId = question.id;
 
@@ -25,15 +27,15 @@
 		const select = selected === "" && selected !== answer;
 
 		if (deselect) {
-			quiz.remove({ topicId, questionId, grade: answer });
+			quizLegacy.remove({ topicId, questionId, grade: answer });
 		}
 
 		if (changeSelect) {
-			quiz.update({ topicId, questionId, grade: answer });
+			quizLegacy.update({ topicId, questionId, grade: answer });
 		}
 
 		if (select) {
-			quiz.add({ topicId, questionId, grade: answer });
+			quizLegacy.add({ topicId, questionId, grade: answer });
 		}
 	}
 </script>
@@ -58,7 +60,7 @@
 					`[&.selected]:border-blue-900 [&.selected]:bg-blue-700 [&.selected]:text-white [&.selected]:hover:bg-blue-800`,
 				)}
 				class:selected={selected === "A"}
-				onclick={stopPropagation(() => onAnswerSelected("A"))}>
+				onclick={(e) => onSelectAnswer(e, "A")}>
 				A
 			</button>
 			<button
@@ -68,7 +70,7 @@
 					`[&.selected]:border-blue-900 [&.selected]:bg-blue-700 [&.selected]:text-white [&.selected]:hover:bg-blue-800`,
 				)}
 				class:selected={selected === "B"}
-				onclick={stopPropagation(() => onAnswerSelected("B"))}>
+				onclick={(e) => onSelectAnswer(e, "B")}>
 				B
 			</button>
 			<button
@@ -78,7 +80,7 @@
 					`[&.selected]:border-blue-900 [&.selected]:bg-blue-700 [&.selected]:text-white [&.selected]:hover:bg-blue-800`,
 				)}
 				class:selected={selected === "C"}
-				onclick={stopPropagation(() => onAnswerSelected("C"))}>
+				onclick={(e) => onSelectAnswer(e, "C")}>
 				C
 			</button>
 			<button
@@ -88,7 +90,7 @@
 					`[&.selected]:border-blue-900 [&.selected]:bg-blue-700 [&.selected]:text-white [&.selected]:hover:bg-blue-800`,
 				)}
 				class:selected={selected === "D"}
-				onclick={stopPropagation(() => onAnswerSelected("D"))}>
+				onclick={(e) => onSelectAnswer(e, "D")}>
 				D
 			</button>
 			<button
@@ -99,7 +101,7 @@
 					`[&.selected]:border-blue-900 [&.selected]:bg-blue-700 [&.selected]:text-white [&.selected]:hover:bg-blue-800`,
 				)}
 				class:selected={selected === "F"}
-				onclick={stopPropagation(() => onAnswerSelected("F"))}>
+				onclick={(e) => onSelectAnswer(e, "F")}>
 				F
 			</button>
 		</div>

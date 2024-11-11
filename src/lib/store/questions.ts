@@ -1,6 +1,5 @@
-import { derived, writable } from "svelte/store";
+import { writable } from "svelte/store";
 
-import { activeTopic } from "$lib/store/active-topic";
 import { questionBank, type QuestionBank } from "$lib/data/question-bank";
 
 export type QuizQuestion = {
@@ -14,7 +13,7 @@ export type QuizQuestion = {
 function mapToQuizQuestions(questions: QuestionBank[], topicId: string): QuizQuestion[] {
 	return questions.map(({ question, answer }) => ({
 		topicId,
-		id: window.crypto.randomUUID(),
+		id: crypto.randomUUID(),
 		question,
 		answer,
 		expanded: false,
@@ -48,7 +47,3 @@ function createQuestions() {
 }
 
 export const questions = createQuestions();
-
-export const readOnlyQuestions = derived([questions, activeTopic], ([$questions, $activeTopic]) => {
-	return $questions.filter(({ topicId }) => topicId === $activeTopic);
-});

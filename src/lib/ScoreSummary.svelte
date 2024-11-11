@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { deriveScoreFromAnswer } from "$lib/utils";
-	import { quiz, type QuizAnswer } from "$lib/store/quiz";
+	import { calculateScore } from "$lib/utils";
+	import { quiz as quizLegacy, type QuizAnswer } from "$lib/store/quiz";
 
 	function getTotalScore(quizAnswers: QuizAnswer[]): number {
 		if (quizAnswers.length > 0) {
-			const scores = quizAnswers.map(({ grade }) => deriveScoreFromAnswer(grade));
+			const scores = quizAnswers.map(({ grade }) => calculateScore(grade));
 			const currentScore = scores.reduce((prev, curr) => prev + curr, 0);
-			const maxScore = quizAnswers.length * deriveScoreFromAnswer("A");
+			const maxScore = quizAnswers.length * calculateScore("A");
 			const percentage = Math.round((currentScore / maxScore) * 100);
 			return percentage;
 		}
@@ -26,7 +26,7 @@
 		return "bg-zinc-600 border-zinc-600";
 	}
 
-	let totalScore = $derived(getTotalScore($quiz));
+	let totalScore = $derived(getTotalScore($quizLegacy));
 	let summaryTheme = $derived(getSummaryTheme(totalScore));
 </script>
 
