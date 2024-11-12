@@ -1,27 +1,25 @@
 <script lang="ts">
 	import { quiz } from "$lib/store/quiz.svelte";
 
-	function findColorScheme(score: number): string {
-		if (70 <= score) {
+	let containerClasses = $derived.by(() => {
+		if (70 <= quiz.totalScore) {
 			return "bg-green-600 border-green-600";
 		}
 
-		if (50 <= score && score < 70) {
+		if (50 <= quiz.totalScore && quiz.totalScore < 70) {
 			return "bg-yellow-600 border-yellow-600";
 		}
 
-		if (0 <= score && score < 50) {
+		if (0 <= quiz.totalScore && quiz.totalScore < 50) {
 			return "bg-red-600 border-red-600";
 		}
 
 		return "bg-zinc-600 border-zinc-600";
-	}
-
-	let colorScheme = $derived(findColorScheme(quiz.totalScore));
+	});
 </script>
 
 <div
-	class="mt-4 flex flex-col items-center rounded-md border border-zinc-300 p-4 text-white {colorScheme}">
+	class="mt-4 flex flex-col items-center rounded-md border border-zinc-300 p-4 text-white {containerClasses}">
 	{#if quiz.totalScore >= 0}
 		<span class="text-4xl">{quiz.totalScore}%</span>
 	{:else}

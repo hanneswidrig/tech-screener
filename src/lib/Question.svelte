@@ -2,7 +2,7 @@
 	import MdiChevronDown from "~icons/mdi/chevron-down";
 	import { twMerge } from "tailwind-merge";
 
-	import { quiz, type Grade } from "$lib/store/quiz.svelte";
+	import { quiz, type Grade, type QuizAnswer } from "$lib/store/quiz.svelte";
 	import type { QuizQuestion } from "$lib/store/questions.svelte";
 
 	interface Props {
@@ -19,23 +19,22 @@
 	function onSelectAnswer(e: Event, grade: Grade): void {
 		e.stopPropagation();
 
-		const topicId = question.topicId;
-		const questionId = question.id;
+		const answer: QuizAnswer = { topicId: question.topicId, questionId: question.id, grade };
 
 		const deselect = selectedGrade === grade;
 		const changeSelect = selectedGrade !== "" && selectedGrade !== grade;
 		const select = selectedGrade === "" && selectedGrade !== grade;
 
 		if (deselect) {
-			quiz.remove({ topicId, questionId, grade });
+			quiz.remove(answer);
 		}
 
 		if (changeSelect) {
-			quiz.update({ topicId, questionId, grade });
+			quiz.update(answer);
 		}
 
 		if (select) {
-			quiz.add({ topicId, questionId, grade });
+			quiz.add(answer);
 		}
 	}
 </script>

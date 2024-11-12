@@ -6,9 +6,11 @@
 	let groups = $state(topicGroups());
 
 	let disabled = $derived(groups.every(({ items }) => items.every(({ selected }) => !selected)));
-	let selected = $derived(groups.flatMap(({ items }) =>
-		items.filter(({ selected }) => selected).map(({ key }) => key),
-	));
+	let selected = $derived(
+		groups.flatMap(({ items }) =>
+			items.filter(({ selected }) => selected).map(({ key }) => key),
+		),
+	);
 
 	function toggleActive(groupKey: string, topicKey: string): void {
 		const group = groups.find((group) => group.key === groupKey);
