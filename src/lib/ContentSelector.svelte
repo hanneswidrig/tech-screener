@@ -4,13 +4,9 @@
 	import { topicGroups } from "$lib/data/topic-group";
 
 	let groups = $state(topicGroups());
-
-	let disabled = $derived(groups.every(({ items }) => items.every(({ selected }) => !selected)));
-	let selected = $derived(
-		groups.flatMap(({ items }) =>
-			items.filter(({ selected }) => selected).map(({ key }) => key),
-		),
-	);
+	let topics = $derived(groups.flatMap(({ items }) => items));
+	let disabled = $derived(topics.every(({ selected }) => !selected));
+	let selected = $derived(topics.filter(({ selected }) => selected).map(({ key }) => key));
 
 	function toggleActive(groupKey: string, topicKey: string): void {
 		const group = groups.find((group) => group.key === groupKey);
@@ -25,7 +21,6 @@
 	function navigateToQuiz(): Promise<void> {
 		const queryParams = new URLSearchParams();
 
-		queryParams.set("topic", selected.shift() as string);
 		for (const key of selected) {
 			queryParams.append("topic", key);
 		}

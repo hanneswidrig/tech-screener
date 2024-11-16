@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Button from "$lib/Button.svelte";
-	import { calculateScore } from "$lib/utils";
+	import { calculateScore } from "$lib/utils/calculate_score";
 	import { topicGroups } from "$lib/data/topic-group";
 	import { quiz } from "$lib/store/quiz.svelte";
 	import { topic } from "$lib/store/topic.svelte";

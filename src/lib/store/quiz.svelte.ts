@@ -1,5 +1,5 @@
 import { topic } from "$lib/store/topic.svelte";
-import { calculateScore } from "$lib/utils";
+import { calculateScore } from "$lib/utils/calculate_score";
 
 export type Grade = "A" | "B" | "C" | "D" | "F" | "";
 export type QuizAnswer = { topicId: string; questionId: string; grade: Grade };
