@@ -4,7 +4,7 @@ import { topic } from "$lib/store/topic.svelte";
 export type QuizQuestion = {
 	topicId: string;
 	id: string;
-	question: string;
+	prompt: string;
 	answer: string;
 	expanded: boolean;
 };
@@ -13,7 +13,7 @@ function mapToQuizQuestions(topicId: string, questions: QuestionBank[]): QuizQue
 	return questions.map(({ question, answer }) => ({
 		topicId,
 		id: crypto.randomUUID(),
-		question,
+		prompt: question,
 		answer,
 		expanded: false,
 	}));

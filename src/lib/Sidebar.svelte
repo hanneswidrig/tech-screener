@@ -20,7 +20,7 @@
 
 <div class="flex h-full flex-col justify-between">
 	<div class="flex flex-col">
-		<Button active={pathname === "/"} onClick={() => goToDashboard()}>Dashboard</Button>
+		<Button selected={pathname === "/"} onClick={() => goToDashboard()}>Dashboard</Button>
 
 		<div class="mt-4 h-px w-full bg-zinc-300"></div>
 

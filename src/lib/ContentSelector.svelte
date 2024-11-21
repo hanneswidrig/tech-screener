@@ -37,7 +37,7 @@
 				<div class="flex flex-wrap gap-2">
 					{#each group.items as item (item.key)}
 						<Button
-							active={item.selected}
+							selected={item.selected}
 							onClick={() => toggleActive(group.key, item.key)}>
 							{item.label}
 						</Button>
@@ -48,6 +48,7 @@
 	</div>
 
 	<div class="mt-8 flex justify-center">
-		<Button {disabled} theme="green" onClick={() => navigateToQuiz()}>Start Quiz</Button>
+		<Button {disabled} selected={!disabled} theme="green" onClick={() => navigateToQuiz()}
+			>Start Quiz</Button>
 	</div>
 </div>

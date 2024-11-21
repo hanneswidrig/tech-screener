@@ -1,9 +1,8 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-* {
-	@apply font-sans;
+@theme {
+	--font-*: initial;
+	--font-sans: Inter, sans-serif;
 }
 
 *:not(input, textarea) {

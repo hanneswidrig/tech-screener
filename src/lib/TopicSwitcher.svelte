@@ -27,7 +27,7 @@
 
 <div class="mt-4 flex flex-col gap-2">
 	{#each topic.all as key (key)}
-		<Button active={topic.isActive(key)} onClick={() => topic.setActive(key)}>
+		<Button selected={topic.isActive(key)} onClick={() => topic.setActive(key)}>
 			<div class="flex justify-between">
 				<span class="text-left">{findTopicLabel(key)}</span>
 				<span class="text-right">{getScoreByTopic(key)}</span>

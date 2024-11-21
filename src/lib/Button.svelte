@@ -1,42 +1,37 @@
 <script lang="ts">
 	import type { MouseEventHandler } from "svelte/elements";
-	import { twMerge } from "tailwind-merge";
 
 	interface Props {
-		active?: boolean;
+		selected?: boolean;
 		disabled?: boolean;
 		theme?: "zinc" | "green";
 		onClick: MouseEventHandler<HTMLButtonElement>;
-		children?: import('svelte').Snippet;
+		children?: import("svelte").Snippet;
 	}
 
-	let {
-		active = false,
-		disabled = false,
-		theme = "zinc",
-		onClick,
-		children
-	}: Props = $props();
+	let { selected = false, disabled = false, theme = "zinc", onClick, children }: Props = $props();
 
 	const children_render = $derived(children);
 </script>
 
-<button
-	class={twMerge(
-		`rounded-md border px-4 py-1.5 text-center shadow-sm`,
-		`hover:shadow-md disabled:cursor-default disabled:border-gray-300 disabled:bg-gray-50 disabled:text-gray-400 disabled:hover:shadow-sm`,
-		`[&:not(:disabled).green]:border-green-900 [&:not(:disabled).green]:bg-green-700 [&:not(:disabled).green]:text-white`,
-		`[&:not(:disabled).green]:hover:bg-green-800 [&:not(:disabled).green]:active:bg-green-900`,
-		`[&:not(:disabled).zinc]:border-zinc-300 [&:not(:disabled).zinc]:bg-white [&:not(:disabled).zinc]:text-black`,
-		`[&:not(:disabled).zinc]:hover:border-zinc-600`,
-		`[&:not(:disabled).zinc.active]:border-zinc-900 [&:not(:disabled).zinc.active]:bg-zinc-700 [&:not(:disabled).zinc.active]:text-white`,
-		`[&:not(:disabled).zinc.active]:hover:bg-zinc-800`,
-	)}
-	class:active
-	class:green={theme === "green"}
-	class:zinc={theme === "zinc"}
-	{disabled}
-	type="button"
-	onclick={(event) => !disabled && onClick(event)}>
-	{@render children_render?.()}
-</button>
+{#if theme === "zinc"}
+	<button
+		class={"cursor-pointer rounded-md border border-zinc-300 bg-white px-4 py-1.5 text-center text-black shadow-xs hover:border-zinc-600 hover:shadow-md disabled:cursor-default disabled:border-gray-300 disabled:bg-gray-50 disabled:text-gray-400 disabled:hover:shadow-xs data-[selected=true]:border-zinc-900 data-[selected=true]:bg-zinc-700 data-[selected=true]:text-white data-[selected=true]:hover:bg-zinc-800"}
+		data-selected={selected}
+		{disabled}
+		type="button"
+		onclick={(event) => !disabled && onClick(event)}>
+		{@render children_render?.()}
+	</button>
+{/if}
+
+{#if theme === "green"}
+	<button
+		class={"cursor-pointer rounded-md border border-green-300 bg-white px-4 py-1.5 text-center text-black shadow-xs hover:border-green-600 hover:shadow-md disabled:cursor-default disabled:border-gray-300 disabled:bg-gray-50 disabled:text-gray-400 disabled:hover:shadow-xs data-[selected=true]:border-green-900 data-[selected=true]:bg-green-700 data-[selected=true]:text-white data-[selected=true]:hover:bg-green-800"}
+		data-selected={selected}
+		{disabled}
+		type="button"
+		onclick={(event) => !disabled && onClick(event)}>
+		{@render children_render?.()}
+	</button>
+{/if}
