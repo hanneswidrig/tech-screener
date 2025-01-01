@@ -36,6 +36,11 @@
 			quiz.add(answer);
 		}
 	}
+
+	const baseStyles =
+		"border border-blue-300 bg-white px-3.5 py-2 text-black shadow-xs hover:border-blue-600 hover:shadow-md";
+
+	const selectedStyles = "border-blue-900 bg-blue-700 text-white hover:bg-blue-800";
 </script>
 
 <div
@@ -53,40 +58,43 @@
 		<div class="ml-4 inline-flex space-x-1">
 			<button
 				type="button"
-				class={"cursor-pointer rounded-tl-md rounded-bl-md border border-blue-300 bg-white px-3.5 py-2 text-black shadow-xs hover:border-blue-600 hover:shadow-md [&.selected]:border-blue-900 [&.selected]:bg-blue-700 [&.selected]:text-white [&.selected]:hover:bg-blue-800"}
-				class:selected={selectedGrade === "A"}
+				class={[
+					baseStyles,
+					"rounded-tl-md rounded-bl-md",
+					selectedGrade === "A" && selectedStyles,
+				]}
 				onclick={(e) => onSelectAnswer(e, "A")}>
 				A
 			</button>
 
 			<button
 				type="button"
-				class={"cursor-pointer border border-blue-300 bg-white px-3.5 py-2 text-black shadow-xs hover:border-blue-600 hover:shadow-md [&.selected]:border-blue-900 [&.selected]:bg-blue-700 [&.selected]:text-white [&.selected]:hover:bg-blue-800"}
-				class:selected={selectedGrade === "B"}
+				class={[baseStyles, selectedGrade === "B" && selectedStyles]}
 				onclick={(e) => onSelectAnswer(e, "B")}>
 				B
 			</button>
 
 			<button
 				type="button"
-				class={"cursor-pointer border border-blue-300 bg-white px-3.5 py-2 text-black shadow-xs hover:border-blue-600 hover:shadow-md [&.selected]:border-blue-900 [&.selected]:bg-blue-700 [&.selected]:text-white [&.selected]:hover:bg-blue-800"}
-				class:selected={selectedGrade === "C"}
+				class={[baseStyles, selectedGrade === "C" && selectedStyles]}
 				onclick={(e) => onSelectAnswer(e, "C")}>
 				C
 			</button>
 
 			<button
 				type="button"
-				class={"cursor-pointer border border-blue-300 bg-white px-3.5 py-2 text-black shadow-xs hover:border-blue-600 hover:shadow-md [&.selected]:border-blue-900 [&.selected]:bg-blue-700 [&.selected]:text-white [&.selected]:hover:bg-blue-800"}
-				class:selected={selectedGrade === "D"}
+				class={[baseStyles, selectedGrade === "D" && selectedStyles]}
 				onclick={(e) => onSelectAnswer(e, "D")}>
 				D
 			</button>
 
 			<button
 				type="button"
-				class={"cursor-pointer rounded-tr-md rounded-br-md border border-blue-300 bg-white px-3.5 py-2 text-black shadow-xs hover:border-blue-600 hover:shadow-md [&.selected]:border-blue-900 [&.selected]:bg-blue-700 [&.selected]:text-white [&.selected]:hover:bg-blue-800"}
-				class:selected={selectedGrade === "F"}
+				class={[
+					baseStyles,
+					"rounded-tr-md rounded-br-md",
+					selectedGrade === "F" && selectedStyles,
+				]}
 				onclick={(e) => onSelectAnswer(e, "F")}>
 				F
 			</button>

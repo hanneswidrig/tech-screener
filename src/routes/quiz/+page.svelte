@@ -1,14 +1,14 @@
 <script lang="ts">
 	import { onMount } from "svelte";
 
-	import { page } from "$app/stores";
+	import { page } from "$app/state";
 	import { quiz } from "$lib/store/quiz.svelte";
 	import Button from "$lib/Button.svelte";
 	import Question from "$lib/Question.svelte";
 	import { questions } from "$lib/store/questions.svelte";
 	import { topic } from "$lib/store/topic.svelte";
 
-	let searchParams = $derived($page.url.searchParams);
+	let searchParams = $derived(page.url.searchParams);
 
 	onMount(() => {
 		topic.setAll(searchParams.getAll("topic"));

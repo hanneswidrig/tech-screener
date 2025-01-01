@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { page } from "$app/stores";
+	import { page } from "$app/state";
 	import { goto } from "$app/navigation";
 
 	import { quiz } from "$lib/store/quiz.svelte";
@@ -7,7 +7,7 @@
 	import ScoreSummary from "$lib/ScoreSummary.svelte";
 	import TopicSwitcher from "$lib/TopicSwitcher.svelte";
 
-	let pathname = $derived($page.url.pathname);
+	let pathname = $derived(page.url.pathname);
 
 	async function goToDashboard(): Promise<void> {
 		quiz.clear();
